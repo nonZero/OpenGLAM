@@ -1,0 +1,12 @@
+*.orig
+*.py[cod]
+/oglam/local_settings.py
+/node_modules/
+/bower_components/
+/dumps/
+/uploads/
+*~
+*.pot
+.idea
+/KEYS.json
+/automation/oglam.hasadna.org.il/

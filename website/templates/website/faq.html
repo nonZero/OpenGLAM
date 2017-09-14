@@ -1,0 +1,38 @@
+{% extends 'website/base.html' %}
+
+{% block content_container %}
+
+    <div id="faq" class="pull-up">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-10">
+                    <br/>
+                    <h1><strong> שאלות ותשובות </strong></h1>
+                    <br/>
+                    <br/>
+                </div>
+
+                <div class="col-sm-1"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-1"></div>
+                <dl>
+                    {% for col in faq %}
+                        <div class="col-sm-5 faq-columns">
+                            {{ col|safe }}
+                        </div>
+                    {% endfor %}
+                </dl>
+                <div class="col-sm-1"></div>
+
+            </div>
+        </div>
+    </div>
+    <div class="row">
+    <hr>
+    </div>
+
+{% endblock %}

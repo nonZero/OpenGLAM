@@ -1,0 +1,60 @@
+טכנולוגיות Web
+
+[html]
+HTML
+
+שליטה
+
+[css]
+CSS
+
+שליטה
+
+[javascript]
+JavaScript
+
+שליטה
+
+[js_frameworks]
+(..Javascript-Based Front-End Frameworks (AngularJS, React
+
+שליטה
+
+[node]
+node
+
+שליטה
+
+
+[php]
+PHP
+
+שליטה
+
+[django]
+Django
+
+שליטה
+
+[django]
+(Non-Django Python-based Web Frameworks (Bottle, Flask, Web2py
+
+שליטה
+
+
+[rails]
+Ruby On Rails
+
+שליטה
+
+[wordpress]
+Wordpress, or Other CMS Framework
+
+שליטה
+
+[other_web?]
+נסיון אחר בטכנולוגיות web
+
+טקסט
+
+במידה ויש לך ידע ונסיון רלוונטי בטכנולגיות WEB אחרות, אנא ציינ/י זאת כאן.

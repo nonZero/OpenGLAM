@@ -1,0 +1,8 @@
+{% with info=u.personalinfo %}BEGIN:VCARD
+VERSION:3.0
+FN:{{ info.hebrew_first_name }} {{ info.hebrew_last_name }}
+N:{{ info.hebrew_last_name }};{{ info.hebrew_first_name }};;;
+ADR;type=HOME:;;{{ info.address|default:'' }};{{ info.city|default:'' }};;;
+EMAIL;type=INTERNET,pref:{{ u.email }}
+TEL;type=CELL,voice:{{ info.main_phone }}
+END:VCARD{% endwith %}

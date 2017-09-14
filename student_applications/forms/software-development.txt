@@ -1,0 +1,75 @@
+טכנולוגיות ונסיון בהנדסת תוכנה
+
+[git]
+Git
+
+שליטה
+
+[dcvs]
+Mecurial / Bazaar / Other DCVS
+
+שליטה
+
+
+[old_cvs]
+Subversion, CVS, SourceSafe or other non-DCVS source control system
+
+שליטה
+
+
+[linux]
+Linux / Unix / BSD
+
+רדיו:
+  * ללא ידע או נסיון
+  * היכרות בסיסית בלבד
+  * שימוש מועט כמשתמש/ת מתחיל/ה
+  * נסיון רב כמשתמש/ת (Super-User)
+  * נסיון כמפתח/ת
+
+[windows]
+Microsoft Windows
+
+רדיו:
+  * ללא ידע או נסיון
+  * היכרות בסיסית בלבד
+  * שימוש מועט כמשתמש/ת מתחיל/ה
+  * נסיון רב כמשתמש/ת (Super-User)
+  * נסיון כמפתח/ת
+  
+[mac]
+Macintosh
+
+רדיו:
+  * ללא ידע או נסיון
+  * היכרות בסיסית בלבד
+  * שימוש מועט כמשתמש/ת מתחיל/ה
+  * נסיון רב כמשתמש/ת (Super-User)
+  * נסיון כמפתח/ת
+
+
+[data_mining_tools]
+נסיון בכלים למחשוב אלגוריתמי וסטטיסטי (..R, Stata, MATLAB)
+
+שליטה
+  
+[relational_databases]
+Relational Databases and SQL
+
+שליטה
+
+[non_relational_databases]
+(Non relational Databases (NoSQL
+
+שליטה
+
+[pair_programming]
+מה דעתך על תכנות בזוגות (Pair Programming)?
+
+רדיו:
+  * אני תמיד או כמעט תמיד מעדיפ/ה לתכנת לבד.
+  * אין לי העדפה ברורה בין עבודה בזוג לעבודה לבד. 
+  * תכנות בזוג נראית לי עדיפה, אך טרם התנסיתי בה מספיק.
+  * תכנות בזוג היא שיטת העבודה המועדפת עלי, ויש לי נסיון בעבודה בשיטה זו.
+
+  בחר את המשפט המתאים ביותר

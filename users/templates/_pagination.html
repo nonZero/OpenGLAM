@@ -1,0 +1,25 @@
+{% load hackita humanize i18n %}
+
+{% if is_paginated %}
+    <div class="text-center">
+        <ul class="pagination">
+            {% if page_obj.has_previous %}
+                <li><a href="?{{ request|page:1 }}">&laquo;</a></li>
+                {#                <li><a href="?page={{ page_obj.previous_page_number }}">&lsaquo;</a>#}
+                </li>
+            {% endif %}
+
+            {% for i in paginator|pages_around:page_obj.number %}
+                <li {% if page_obj.number == i %} class="active" {% endif %}>
+                    <a href="?{{ request|page:i }}">{{ i|intcomma }}</a></li>
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+                {#                <li><a href="?page={{ page_obj.next_page_number }}">&rsaquo;</a></li>#}
+                <li><a href="?{{ request|page:page_obj.paginator.num_pages }}"
+                       title="{{ page_obj.paginator.num_pages|intcomma }}">&raquo;</a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+{% endif %}

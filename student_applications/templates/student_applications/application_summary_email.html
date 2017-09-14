@@ -1,0 +1,26 @@
+<div dir="rtl">
+    <h1>
+        <a href="{{ url }}">{{ u.hebrew_display_name }}</a>
+    </h1>
+
+    <a href="mailto:{{ u.email }}">{{ u.email }}</a>
+
+    {% with info=u.personalinfo %}
+        <ul>
+            {{ info.hebrew_first_name }} {{ info.hebrew_last_name }}
+            &bull;
+            {{ info.english_first_name }} {{ info.english_last_name }}
+            &bull;
+            {{ info.get_gender_display }}
+            &bull;
+            {{ info.main_phone }}
+            {% if info.alt_phone %}({{ info.alt_phone }}){% endif %}
+            &bull;
+            {{ info.address|default:'' }}
+            {{ info.city|default:'' }}
+        </ul>
+    {% endwith %}
+
+    {% include "student_applications/_answers.html" %}
+
+</div>

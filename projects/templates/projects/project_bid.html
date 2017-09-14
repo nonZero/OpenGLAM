@@ -1,0 +1,59 @@
+{% extends 'users/base.html' %}
+{% load i18n humanize hackita staticfiles %}
+
+{% block content %}
+
+    <h1>
+        {% trans "Projects" %}
+    </h1>
+
+    <form method="post">
+        {% csrf_token %}
+        <input type="hidden" name="bid" id="v">
+        <ul class="list-group bid">
+            <li class="list-group-item">
+                <h3 class="text-right">
+                    <span class="limit">100</span>
+                    /
+                    <span class="total">0</span>
+
+                    <button class="btn btn-primary"
+                            disabled="1">{% trans "Send" %}</button>
+                </h3>
+            </li>
+
+            {% for object in published %}
+                <li class="list-group-item">
+                    <h4 class="list-group-item-heading">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                {{ object|u }}
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="bid-item row">
+                                    <div class="col-xs-9">
+                                        <input type="range" min="0" max="100"
+                                               value="{{ object.bid.value|default:0 }}" data-id="{{ object.id }}">
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <input type="number" min="0" max="100"
+                                               value="{{ object.bid.value|default:0 }}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </h4>
+
+                    <p class="list-group-item-text">
+                        {{ object.summary }}
+                    </p>
+                </li>
+            {% endfor %}
+
+        </ul>
+    </form>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static "js/project_bid.js" %}"></script>
+{% endblock %}

@@ -1,0 +1,137 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-09-13 14:48+0300\n"
+"PO-Revision-Date: 2015-09-13 14:48+0300\n"
+"Last-Translator: Udi Oron <udioron@gmail.com>\n"
+"Language-Team: \n"
+"Language: he\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.8.4\n"
+
+msgid "title"
+msgstr "כותרת"
+
+msgid "active"
+msgstr "פעיל"
+
+msgid "invitations open"
+msgstr "ניתן עדיין להרשם"
+
+msgid "starts at"
+msgstr "מועד התחלה"
+
+msgid "ends at"
+msgstr "מועד סיום"
+
+msgid "registartion ends at"
+msgstr "ההרשמה נסגרת ב"
+
+msgid "location"
+msgstr "מיקום"
+
+msgid "New invitation"
+msgstr "הזמנה חדשה"
+
+msgid "Invitation sent"
+msgstr "ההזמנה נשלחה"
+
+msgid "Invitation approved"
+msgstr "ההזמנה אושרה"
+
+msgid "Invitation maybe"
+msgstr "ההזמנה סומנה כ\"אולי\""
+
+msgid "Invitation declined"
+msgstr "ההזמנה נדחתה"
+
+msgid "Attended"
+msgstr "הגיע"
+
+msgid "Partially attended"
+msgstr "הגיע באופן חלקי"
+
+msgid "Did not attend"
+msgstr "לא הגיע"
+
+msgid "Status"
+msgstr "סטטוס"
+
+msgid "Note"
+msgstr "הערה"
+
+msgid "Attendance"
+msgstr "נוכחות"
+
+msgid "Invitation"
+msgstr "הזמנה"
+
+msgid "You are invited to"
+msgstr "אתה מוזמן ל:"
+
+msgid "at"
+msgstr "ב"
+
+msgid "From"
+msgstr "החל מ"
+
+msgid "To"
+msgstr "ועד"
+
+msgid "Click here to confirm your invitation"
+msgstr "לחץ כאן לאישור ההזמנה"
+
+msgid "Registartion ends at"
+msgstr "ההרשמה נסגרת ב"
+
+msgid "Edit"
+msgstr "עריכה"
+
+msgid "Invitation Status"
+msgstr "סטטוס הזמנה"
+
+msgctxt "invitation"
+msgid "to"
+msgstr "עבור"
+
+msgid "Will you attend the event?"
+msgstr "האם תגיע לאירוע?"
+
+msgid "Your current answer"
+msgstr "תשובתך הנוכחית"
+
+msgid "Yes"
+msgstr "כן"
+
+msgid "Maybe"
+msgstr "אולי"
+
+msgid "No"
+msgstr "לא"
+
+msgid "Registration already closed."
+msgstr "ההרשמה נסגרה"
+
+msgid "Save"
+msgstr "שמירה"
+
+msgid "Events"
+msgstr "אירועים"
+
+msgid "Event already finished."
+msgstr "האירוע הסתיים"
+
+msgid "Thank you!"
+msgstr "תודה רבה!"
+
+msgid "Invitation updated successfully"
+msgstr "ההזמנה עודכנה בהצלחה"

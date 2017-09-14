@@ -1,0 +1,190 @@
+{% extends 'users/base.html' %}
+{% load i18n humanize hackita staticfiles bootstrap3 %}
+
+{% block page_title %}
+    {{ object.title }}
+    |
+    {% trans "Projects" %}
+    |
+{% endblock %}
+
+{% block content %}
+
+    <ol class="breadcrumb">
+        <li>
+            <a href="{% url "projects:list" %}">
+                {% trans "Projects" %}
+            </a>
+        </li>
+    </ol>
+
+    <h1>
+        {% if perms.projects.create_project %}
+            <a href="{{ object.get_update_url }}"
+               class="btn btn-warning pull-right">
+                <i class="fa fa-edit"></i>
+            </a>
+        {% endif %}
+
+        {{ object|u }}
+    </h1>
+
+    {% if not object.is_published %}
+        <div class="alert alert-danger">
+            <i class="fa fa-exclamation-triangle"></i>
+            {% trans "Unpublished" %}
+        </div>
+    {% endif %}
+
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    {{ object.summary_html|safe }}
+                </div>
+                {% if object.link %}
+                    <div class="panel-footer">
+                        <a href="{{ object.link }}"><i
+                                class="fa fa-book"></i> {% trans "Full project statement" %}...
+                        </a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="col-sm-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    {% trans "Would you like to work on this project?" %}
+                </div>
+                <div class="panel-body">
+                    {% if vote_form %}
+                        <form method="post" id="voteform">
+                            {% csrf_token %}
+                            <input type="hidden" name="type" value="vote"/>
+                            {% bootstrap_field vote_form.score show_label=0 %}
+                            <div class="save collapse">
+                                <button class="btn btn-primary">{% trans "Vote!" %}</button>
+                                <span class="loader collapse">
+                                    <i class="fa fa-spin fa-spinner"></i>
+                                </span>
+                            </div>
+                            <div class="ok collapse text-success">
+                                <i class="fa fa-check"></i>
+                                {% trans "Saved sucessfully." %}
+                            </div>
+                        </form>
+                    {% else %}
+                        <a href="{% url "users:login" %}?from={{ request.path }}"
+                           class="btn btn-primary btn-block">
+                            {% trans "Login" %} / {% trans "Register" %}
+                        </a>
+
+                    {% endif %}
+                </div>
+            </div>
+
+            {% if user.team_member %}
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        {% trans "Votes" %}
+                    </div>
+
+                    {% regroup project.votes.desc by get_score_display as groups %}
+
+                    <ul class="list-group">
+                        {% for group in groups %}
+                            <li class="list-group-item">
+                                <b class="list-group-item-heading">
+                                    {{ group.grouper }}
+                                </b>
+
+                                <div class="list-group-item-body">
+                                    <ul class="list-inline">
+                                        {% for item in group.list %}
+                                            <li>{{ item.user|u }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+
+
+                </div>
+            {% endif %}
+
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                {% trans "Comments" %}
+            </h3>
+        </div>
+
+        <ul class="list-group" id="comments">
+            {% for c in object.comments.asc %}
+                {% include "projects/_project_comment.html" %}
+            {% endfor %}
+
+            <li class="list-group-item">
+                <div class="list-group-item-heading">
+                    <b>{% trans "Add Comment" %}</b>
+                </div>
+                {% if request.user.id %}
+                    <div class="list-group-item-body">
+                        <form method="post" id="commentform">
+                            {% csrf_token %}
+                            <input type="hidden" name="type"
+                                   value="comment"/>
+
+                            <div class="form-group">
+                                <label class="control-label">
+                                    {% trans "Your public name is:" %}
+                                </label>
+
+                                <div class="controls">
+                                    {{ user }}
+                                    <a href="{% url "users:set_names" %}"
+                                       title="{% trans "Edit" %}">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                </div>
+
+                            </div>
+                            {% bootstrap_form comment_form %}
+                            <button class="btn btn-primary"
+                                    disabled="1">{% trans "Add" %}</button>
+                            <div class="save">
+                            <span class="loader collapse">
+                                <i class="fa fa-spin fa-spinner"></i>
+                            </span>
+                            </div>
+                            <div class="ok collapse text-success">
+                                <i class="fa fa-check"></i>
+                                {% trans "Saved sucessfully." %}
+                            </div>
+                        </form>
+                        {% else %}
+                        <a href="{% url "users:login" %}?from={{ request.path }}"
+                           class="btn btn-primary btn-block">
+                            {% trans "Login" %}
+                            / {% trans "Register" %}
+                        </a>
+
+                    </div>
+                {% endif %}
+            </li>
+        </ul>
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static "js/csrf.js" %}"></script>
+    <script src="{% static "vendor/jquery.form.js" %}"></script>
+    <script src="{% static "js/project_detail.js" %}"></script>
+{% endblock %}
+

@@ -1,0 +1,16 @@
+{% load i18n %}
+<a class="label label-info"
+   href="{% url "sa:app_detail" app.id %}">
+    {{ app.get_status_display }}
+    {% if app.status == app.Status.NEW %}
+        ({{ app.forms_filled }})
+    {% else %}
+    {% endif %}
+</a>
+{% if edit %}
+    &nbsp;
+    <a class="btn btn-info btn-xs" title="{% trans "Edit Status" %}"
+       href="{% url "sa:app_status" app.id %}">
+        <i class="fa fa-edit"></i>
+    </a>
+{% endif %}

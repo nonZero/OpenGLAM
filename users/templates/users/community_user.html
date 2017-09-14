@@ -1,0 +1,64 @@
+{% extends 'users/base.html' %}
+{% load i18n humanize hackita staticfiles sa users gravatar %}
+
+{% block page_title %}
+    {{ object.community_name }}
+    |
+    {% trans "Community" %}
+    |
+{% endblock %}
+
+{% block content %}
+
+    <ol class="breadcrumb">
+        <li>
+            <a href="{% url "users:community" %}">{% trans "Community" %}</a>
+        </li>
+    </ol>
+
+    <h1>
+        {{ object.community_name }}
+    </h1>
+
+    <div class="row">
+        <div class="col-sm-4 col-md-3">
+            <div class="clearfix">
+                <img
+                        src="{{ object.email|gravatar_url:256 }}"
+                        class="img-responsive"/></div>
+            <br/>
+            <ul class="list-group">
+                {% if object.community_email %}
+                    <li class="list-group-item">
+                        <i class="glyphicon glyphicon-envelope"></i>
+                        <a href="mailto:{{ object.community_email }}">
+                            {{ object.community_email }}
+                        </a>
+                    </li>
+                {% endif %}
+                {% if object.community_contact_phone %}
+                    <li class="list-group-item">
+                        <i class="glyphicon glyphicon-phone"></i>
+                        <a href="tel:{{ object.community_contact_phone }}">
+                            {{ object.community_contact_phone }}
+                        </a>
+                    </li>
+                {% endif %}
+
+            </ul>
+
+        </div>
+        <div class="col-sm-8 col-md-9">
+            {% if object.community_personal_info %}
+
+                <blockquote>
+                    {{ object.community_personal_info|urlize|linebreaksbr }}</blockquote>
+            {% endif %}
+
+        </div>
+    </div>
+
+
+
+
+{% endblock %}

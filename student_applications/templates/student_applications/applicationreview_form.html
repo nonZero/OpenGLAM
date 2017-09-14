@@ -1,0 +1,58 @@
+{% extends 'users/base.html' %}
+{% load i18n hackita staticfiles %}
+
+{% block content %}
+
+    <ol class="breadcrumb">
+        <li>
+            <a href="{% url "sa:app_list" %}">
+                {% trans "Applications" %}
+            </a>
+        </li>
+        <li>
+            {{ application|u }}
+        </li>
+    </ol>
+
+    <h1>
+        {% trans "Review Application" %}
+    </h1>
+
+    <div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="panel panel-primary">
+
+                    <div class="panel-body">
+                        <form method="post" novalidate>
+                            {% csrf_token %}
+                            {% bootstrap_form form %}
+                            <div class="form-actions">
+                                <input class="btn btn-primary btn-block"
+                                       type="submit"
+                                       value="{% trans "Send" %}"/>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-md-8">
+                {% include "student_applications/_answers.html" with u=application.user accordion=True %}
+            </div>
+
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static "js/fix-code.js" %}"></script>
+    <script>
+    $(function() {
+        $(".user-answer-content").fixCode();
+    })
+    </script>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'users/base.html' %}
+{% load i18n humanize hackita staticfiles %}
+
+{% block content %}
+
+
+    <h1>
+        {{ view.page_title }}
+
+        <small>
+            {{ page_obj.start_index|intcomma }}
+            - {{ page_obj.end_index|intcomma }}
+            {% if page_obj.paginator.num_pages > 1 %}
+                {% trans "of" %} {{ page_obj.paginator.count|intcomma }}
+            {% endif %}
+        </small>
+
+    </h1>
+
+    <div class="panel panel-default">
+
+        <ul class="list-group" id="notes">
+
+            {% for note in object_list %}
+                {% include "users/_user_note.html" with show_user=True %}
+            {% endfor %}
+
+        </ul>
+    </div>
+
+    {% include "_pagination.html" %}
+
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static "js/csrf.js" %}"></script>
+    <script src="{% static "vendor/jquery.form.js" %}"></script>
+    <script src="{% static "js/user_detail.js" %}"></script>
+{% endblock %}
+

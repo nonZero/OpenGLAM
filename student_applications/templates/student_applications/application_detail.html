@@ -1,0 +1,35 @@
+{% extends 'users/base.html' %}
+{% load i18n humanize hackita %}
+
+{% block page_title %}
+    {{ object.user.hebrew_display_name }}
+    |
+    {% trans "Applications" %}
+    |
+{% endblock %}
+
+{% block content %}
+
+    {% with u=object.user %}
+
+        <ol class="breadcrumb">
+            <li>
+                <a href="{% url "sa:app_list" %}">
+                    {% trans "Applications" %}
+                </a>
+            </li>
+        </ol>
+
+        <h1 class="page-title">
+            <span dir="rtl">{{ u|u }}</span>
+            <span dir="ltr">&lt;{{ u.email }}&gt;</span>
+        </h1>
+
+        {% include "users/_personal_info.html" %}
+
+        {% include "student_applications/_answers.html" %}
+
+
+    {% endwith %}
+
+{% endblock %}

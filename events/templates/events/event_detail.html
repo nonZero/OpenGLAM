@@ -1,0 +1,130 @@
+{% extends 'student_applications/bulk_base.html' %}
+{% load i18n humanize staticfiles sa %}
+
+{% block main_content %}
+
+    <h1>
+        <div class="pull-right">
+            <a href="{% url "events:contacts" object.slug %}">
+                <i class="fa fa-print"></i>
+            </a>
+        </div>
+        {{ object.title }}
+    </h1>
+
+    <div class="row">
+        <div class="col-md-4">
+
+            <ul class="list-group">
+                <li class="list-group-item">
+                    {% trans "at" %}: {{ object.location }}
+                </li>
+                <li class="list-group-item">
+                    {% trans "From" %}: {{ object.starts_at|date:"d/n/Y H:i" }}
+                </li>
+                <li class="list-group-item">
+                    {% trans "To" %}: {{ object.ends_at|date:"d/n/Y H:i" }}
+                </li>
+                {% if object.registration_ends_at %}
+                    <li class="list-group-item">
+                        {% trans "Registartion ends at" %}:
+                        {{ object.registration_ends_at|date:"d/n/Y H:i" }}
+                    </li>
+                {% endif %}
+            </ul>
+
+            {% regroup object.invitations.all by get_status_display as groups %}
+
+            {% for group in groups %}
+                <div class="group">
+
+                    <h2 class="grouper clickable">
+                        {{ group.grouper }}
+                    </h2>
+
+                    <ul class="list-group">
+                        {% for i in group.list %}
+                            <li class="list-group-item">
+                                <span class="badge">{{ forloop.counter }}</span>
+
+                                <div class="pull-right">
+                                    <a class="btn btn-default btn-xs"
+                                       href="{% url "events:invitation_edit" i.slug %}?from={{ request.get_full_path }}"><i
+                                            class="fa fa-pencil"
+                                            title="{% trans "Edit" %}"></i></a>
+                                    &nbsp;
+                                </div>
+
+                                <input class="user-email" type="checkbox"
+                                       name="users"
+                                       value="{{ i.user.id }}"
+                                       data-email="{{ i.user.email }}"
+                                        {% if i.status == i.statuses.APPROVED %}
+                                       checked="1"{% endif %}/>
+                                <a href="{{ i.user.get_absolute_url }}"
+                                   title="{{ i.created_at }}">{{ i.user }}</a>
+                                {% if i.attendance %}
+                                    ({{ i.get_attendance_display }})
+                                {% endif %}
+                                {% if i.user.application %}
+                                    {% app_status i.user.application %}
+                                {% endif %}
+
+                                {% if i.note %}
+                                    <br/>
+                                    <br/>
+                                    <div class="panel panel-default">
+                                        <div class="panel-body">
+                                            <p>{{ i.note|linebreaksbr }}</p>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endfor %}
+
+            <div>
+                 <textarea id="emails" dir="ltr"
+                           style="text-align: left; width:100%">
+                 </textarea>
+            </div>
+
+        </div>
+
+        <div class="col-md-8">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    {{ object.description|urlize|linebreaksbr }}
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+{% endblock %}
+
+{% block custom_bulk_ops %}
+    <div class="form-group">
+        <label class="col-sm-4 control-label">{% trans "Invitation Status" %}</label>
+
+        <div class="col-sm-8">
+            {{ event_status }}
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-4 control-label">{% trans "Attendance" %}</label>
+
+        <div class="col-sm-8">
+            {{ attendance }}
+        </div>
+    </div>
+{% endblock %}
+
+{% block page_scripts %}
+
+    <script src="{% static "js/event_detail.js" %}"></script>
+
+{% endblock %}

@@ -1,0 +1,40 @@
+{{ value }}
+<div class="controlfield clearfix">
+    <div class="row">
+        {% for group, options, index in widget.optgroups %}
+            {% for option in options %}
+                <div class="col-xs-1 text-center">
+                    {#                {{ option }}#}
+                    {#                {% include option.template_name with widget=option %}#}
+                    <label for="{{ option.attrs.id }}">
+                        <input type="radio"
+                               id="{{ option.attrs.id }}"
+                               value="{{ option.value }}"
+                               name="{{ option.name }}"
+                                {% if option.required %} required{% endif %}
+                                {% if option.value|stringformat:"d" in widget.value %}
+                               checked{% endif %}>
+                        {{ option.label }}
+                    </label>
+                </div>
+            {% endfor %}
+        {% endfor %}
+    </div>
+
+    <div class="row">
+        {% for group, options, index in widget.optgroups %}
+
+            {% for option in options %}
+                {% if option.1|length > 1 %}
+                    <div class="col-md-2 text-center">
+                        <label class="label label-control"
+                               for="{{ attrs.id }}_{{ forloop.counter }}">
+                            {{ option.1 }}
+                        </label>
+                    </div>
+
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    </div>
+</div>

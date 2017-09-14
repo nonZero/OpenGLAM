@@ -1,0 +1,86 @@
+{% extends 'users/base.html' %}
+{% load i18n humanize hackita staticfiles %}
+
+{% block content %}
+
+    <form method="post">
+        {% csrf_token %}
+
+        {% block main_content %}
+        {% endblock %}
+
+        {% if perms.student_applications.bulk_application %}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <a href="#bulk" data-toggle="collapse">
+                        {% trans "Bulk Operations" %}
+                    </a>
+                </div>
+                <div class="panel-body collapse" id="bulk">
+
+                    <div class="pull-right">
+                        <i class="fa fa-check-square select-all"></i>
+                        <i class="fa fa-square select-none"></i>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-sm-6">
+
+                            <div class="form-horizontal">
+                                {% block custom_bulk_ops %}
+
+                                {% endblock %}
+
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">{% trans "Change status" %}</label>
+
+                                    <div class="col-sm-8">
+                                        {{ statuses }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">{% trans "Invite to event" %}</label>
+
+                                    <div class="col-sm-8">
+                                        {{ events }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">{% trans "Send survey" %}</label>
+
+                                    <div class="col-sm-8">
+                                        {{ surveys }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-offset-4 col-sm-8">
+                                        <button class="btn btn-default">{% trans "Go" %}</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                        <textarea id="emails" dir="ltr"
+                                  style="text-align: left; width:100%"></textarea>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+
+    </form>
+
+
+{% endblock %}
+
+{% block scripts %}
+
+    <script src="{% static "js/applications_bulk.js" %}"></script>
+
+    {% block page_scripts %}
+    {% endblock %}
+
+{% endblock %}

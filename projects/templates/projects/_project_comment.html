@@ -1,0 +1,62 @@
+{% load i18n humanize hackita projects %}
+
+{% if c|comment_is_visible:user %}
+
+    <li class="list-group-item{% if c.new %} list-group-item-success{% elif not c.is_published %} list-group-item-danger{% elif c.scope == c.Scope.PRIVATE %} list-group-item-warning{% endif %}{% if c.new %} list-group-item-success{% endif %}{% if not c.is_published %} deleted{% endif %}"
+        id="comment-{{ c.id }}">
+        <div class="list-group-item-heading">
+            {% if perms.projects.projectcomment_change %}
+                <div class="pull-right">
+                    <a class="btn btn-success btn-xs"
+                       href="{% url "projects:update_comment" c.id %}"><i
+                            class="fa fa-edit"></i></a>
+                </div>
+            {% endif %}
+            {% if c.scope == c.Scope.PRIVATE %}
+                <div class="pull-right">
+                    <span class="label label-warning">
+                        <i class="fa fa-user-secret"></i>
+                        {% trans "Private" %}
+                    </span>
+                </div>
+            {% endif %}
+            {% if not c.is_published %}
+                <div class="pull-right">
+                    <span class="label label-danger">
+                        <i class="fa fa-trash"></i> {% trans "Deleted" %}
+                    </span>
+                </div>
+            {% endif %}
+            {% if user.team_member %}
+                <div class="pull-right">
+                    <span class="label label-info" title="{% trans "Reviewed by" %}">
+                        <i class="fa fa-binoculars"></i>
+                        {% if c.is_reviewed %}
+                            {{ c.reviewed_by }},
+                            {{ c.reviewed_at|naturaltime }}
+                        {% else %}
+                            <span class="review"
+                                  data-url="{% url "projects:review_comment" c.id %}">
+                                {% trans "Unreviewed" %}
+                            </span>
+                        {% endif %}
+                    </span>
+                </div>
+            {% endif %}
+            <b>
+                {% if show_project %}
+                    {{ c|u:'project' }}:<br/>
+                {% endif %}
+                {{ c.user }},
+                {% if user.team_member %}
+                    ({{ c.user|u:'email' }})
+                {% endif %}
+                <span title="{{ c.created_at }}">{{ c.created_at|naturaltime }}</span>:
+            </b>
+        </div>
+        <div class="list-group-item-body">
+            {{ c.content|linebreaksbr }}
+        </div>
+    </li>
+
+{% endif %}

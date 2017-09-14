@@ -1,0 +1,281 @@
+{% extends 'website/base.html' %}
+{% load staticfiles %}
+{% block content_container %}
+
+
+
+    <div id="about" class="pull-up">
+        <div class="container">
+            <div class=row>
+                <div class="col-sm-10 col-sm-push-2">
+                    <h1>
+                        עלינו
+                    </h1>
+                </div>
+            </div>
+
+            <div class=row>
+                <div class="col-sm-10 col-sm-push-2">
+                    <h2>הכיתה 02</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 logos">
+                    <div class="hackita">
+                        &nbsp;הכיתה
+                        <br/>
+                        Hackita
+                    </div>
+                </div>
+                <div class="col-sm-10 col-md-8 col-lg-6">
+                    <p>
+                        <b>
+                            הכיתה היא תכנית ייחודית, מבית הסדנא לידע ציבורי, להכשרת מפתחי ומפתחות תוכנה. התכנית מבוססת
+                            על למידה תוך כדי עשייה, בפיתוח פרויקטים למען החברה. זהו המחזור השני לתכנית, לראשונה בשיתוף
+                            פעולה עם הספרייה הלאומית.
+                        </b>
+                    </p>
+
+                    <p>
+
+                        בשנים האחרונות מפתחות ומפתחי תוכנה רבים מעוניינים להצטרף לשורות הסדנא לידע ציבורי.
+                        על מנת להעביר את הידע הנצבר בפיתוח בקוד פתוח, ועל מנת להאיץ את תהליך הכניסה
+                        לפרויקטים, נפתחה תכנית הכשרה מיוחדת זו.
+
+                        אנחנו בסדנא לידע ציבורי, מאמינות ומאמינים שהדרך הטובה ביותר ללמוד פיתוח היא באמצעות פיתוח - ולכן
+                        עיקרה של התכנית מבוסס על עבודה בצוותים קטנים על פרוייקטים אישיים.
+                    </p>
+
+                    <p>
+
+                        המחזור הראשון של הכיתה התארח בקמפוס TLV של גוגל בחורף 2013-2014, בו לקחו חלק כ-30
+                        מפתחות ומפתחי תוכנה, ובמסגרתו צמחו מספר פרויקטים סדנאיים כמו <a href="http://www.kikar.org"
+                                                                                        target="_blank">כיכר
+                        המדינה</a>, <a href="https://play.google.com/store/apps/details?id=il.org.hasadna.opentrain"
+                                       target="_blank">רכבת פתוחה</a>, ועוד.
+                    </p>
+
+                    <p>
+
+                        המחזור השני ייפתח בירושלים באוקטובר הקרוב. לראשונה, התכנית תפעל כשיתוף פעולה חדשני בין הסדנא
+                        לידע ציבורי ובין הספרייה הלאומית, כאשר הפרויקטים אשר יפותחו במסגרת התכנית, יתבססו על מאגרי המידע
+                        העשירים והמגוונים של הספרייה.
+                    </p>
+
+
+                    <p>
+                        <a class="btn btn-primary"
+                           href="{% url 'sa:dashboard' %}">
+                            להרשמה לתכנית
+                            &nbsp;
+                            <i class="fa fa-play fa-flip-horizontal"></i>
+
+                        </a>
+                    </p>
+                </div>
+            </div>
+            <div class=row>
+                <div class="col-sm-10 col-sm-push-2">
+                    <h2>
+                        הספרייה הלאומית
+                    </h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 logos">
+                    <a href="http://web.nli.org.il" target="_blank"><img
+                            class="img-responsive"
+                            src="{% static "img/nli-vertical.png" %}"
+                            alt=""></a>
+
+                </div>
+                <div class="col-sm-10 col-md-8 col-lg-6">
+                    <p>
+                        <b>
+                            בספרייה הלאומית למעלה מחמישה מיליון ספרים וכתבי
+                            עת, וכן אלפי פריטים נוספים באוספים מיוחדים, בהם
+                            כתבי יד, ארכיונים, מפות, הקלטות מוזיקליות
+                            ואוספים דיגיטליים.
+
+                        </b>
+                    </p>
+
+                    <p>
+
+                        בהתאם לחוק הספרים, הספרייה אוספת, משמרת ומאפשרת
+                        עיון בכל פרסום שיצא לאור אי-פעם בישראל.
+
+                    </p>
+
+                    <p>
+                        250,000 ספרים מונחים על מדפים פתוחים בשמונה
+                        אולמות הקריאה: יהדות, אסלאם והמזרח התיכון, מדעי
+                        הרוח הכלליים, תצלומי כתבי יד, ארכיונים, אוסף
+                        המפות על שם ערן לאור, אוסף אדלשטיין ואולם אוסף
+                        גרשם שלום. יתר הספרים נמצאים במחסני הספרייה
+                        ובמחסנים חיצוניים.
+                    </p>
+
+                    <p>
+                        האוסף הדיגיטלי מכיל אלפי סריקות של ספרים, כתבי
+                        יד, עיתונים, דפי תלמוד, מפות, ואת ארכיון
+                        הצליל.
+                    </p>
+
+                    <p><a class="btn btn-default"
+                          href="http://web.nli.org.il/">
+                        לאתר הספרייה הלאומית
+                        &nbsp;
+                        <i class="fa fa-play fa-flip-horizontal"></i>
+
+                    </a></p>
+
+
+                </div>
+
+            </div>
+            <div class=row>
+                <div class="col-sm-10 col-sm-push-2">
+                    <h2> הסדנא לידע ציבורי </h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 logos">
+                    <a href="http://www.hasadna.org.il" target="_blank"><img
+                            class="img-responsive"
+                            src="{% static "img/pkw_logo_cropped.png" %}"
+                            alt=""></a>
+
+                </div>
+                <div class="col-sm-10 col-md-8 col-lg-6">
+                    <p>
+                        <b>הסדנא לידע ציבורי היא ארגון ללא מטרות רווח המקדם שקיפות, אחריותיות ומעורבות אזרחית על ידי
+                            איסוף, פתיחה והנגשה של מידע שמצוי ברשותם של גופי ממשל ומוסדות ציבוריים. </b>
+                    </p>
+
+                    <p>
+                        המתנדבות והמתנדבים שלנו מפתחים כלים טכנולוגיים בקוד פתוח, לחשיפה והנגשה של מידע וידע לציבור
+                        הרחב.
+                    </p>
+
+                    <p>
+                        הפרויקטים עוסקים, בין השאר:<br/> ב<a href="http://oknesset.org/" target="_blank">פעילות
+                        פרלמנטרית של הכנסת</a>, ב<a href="http://www.obudget.org/" target="_blank">תקציב המדינה</a>
+                        וב<a href="http://openmuni.org.il/">תקציבים של רשויות מקומיות</a>. עוסקים גם ב<a
+                            href="http://opentaba.info/">תב"ע</a> (תוכניות בניין עיר),
+                        ב<a href="http://www.openpension.org.il/" target="_blank">מדיניות השקעות של קרנות הפנסיה</a>, וב<a
+                            href="http://www.anyway.co.il/" target="_blank">תאונות
+                        דרכים</a>. חלקם גם עוסקים ב<a href="https://play.google.com/store/apps/details?id=il.org.hasadna.opentrain"
+                                      target="_blank">נתוני זמן אמת של רכבת ישראל</a>, ב<a
+                            href="https://he.wikisource.org/wiki/%D7%95%D7%99%D7%A7%D7%99%D7%98%D7%A7%D7%A1%D7%98:%D7%A1%D7%A4%D7%A8_%D7%94%D7%97%D7%95%D7%A7%D7%99%D7%9D_%D7%94%D7%A4%D7%AA%D7%95%D7%97"
+                            target="_blank">נוסחי
+                        חוקים</a>, וב<a href="http://www.kikar.org" target="_blank">פעילות ח"כים ברשתות החברתיות</a>. פרויקטים נוספים עוסקים במדדי
+                        איכות הסביבה, במחירים
+                        של רשתות המזון ועוד.
+                    </p>
+
+                    <p>
+                        המפגשים השבועיים שלנו מתקיימים מדי יום ב' בגוגל קמפוס (יגאל אלון 98, בניין אלקטרה, קומה 34)
+                        מ-18:00 ועד חצות, ובירושלים מדי יום ד' בגבעת רם מ-19:00 עד 23:00.
+                    </p>
+
+
+                    <p>
+                        <a class="btn btn-default"
+                           href="http://www.hasadna.org.il" target="_blank">
+                            לאתר הסדנא לידע ציבורי
+                            &nbsp;
+                            <i class="fa fa-play fa-flip-horizontal"></i>
+                        </a>
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="mentors">
+
+        <div class="container">
+            <h2> צוות מלווה </h2>
+
+
+            <div class="row" id="mentors-details">
+                <div class="col-sm-6">
+                    <h3>
+                        אודי אורון
+                    </h3>
+
+                    <div class="row">
+                        <div class="col-xs-4">
+
+                            <a class="team-member"
+                               href="https://il.linkedin.com/in/udioron" target="_blank">
+                                <img class="img-thumbnail img-responsive"
+                                     src="{% static "img/udi.jpg" %}"
+                                     alt="אודי אורון"
+                                     class="img-thumbnail"/>
+                                <i class="fa fa-linkedin-square fa-2x"></i>
+                            </a>
+
+                        </div>
+                        <div class="col-xs-8">
+                            <p>נשוי ואבא לשלושה. מפתח תוכנה, מדריך וחובב
+                                טבע.
+                                <br/>
+
+                                פועל לקידום תוכניות חדשניות להכשרת מפתחי
+                                תוכנה.
+                                <br/>
+
+                                במסגרת הסדנא לידע ציבורי השתתף בפרויקט
+                                קהילה
+                                פתוחה, ובהמשך הוביל את המחזור הראשון של
+                                הכיתה.
+                            </p>
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <h3>
+                        יותם מנור
+                    </h3>
+
+                    <div class="row">
+                        <div class="col-xs-4">
+
+                            <a class="team-member"
+                               href="https://il.linkedin.com/in/yotammanor" target="_blank">
+
+                                <img class="img-thumbnail img-responsive"
+                                     src="{% static "img/yotam.jpg" %}"
+                                     alt="יותם מנור" class="img-thumbnail"/>
+                                <i class="fa fa-linkedin-square fa-2x"></i>
+                            </a>
+                        </div>
+                        <div class="col-xs-8">
+                            <p>
+                                יותם, בוגר המחזור הראשון של הכיתה, ומוביל
+                                פרוייקט
+                                <a href="http://www.kikar.org" target="_blank">כיכר המדינה</a> בסדנא
+                                לידע
+                                ציבורי.
+                                חוץ מזה, הוא מנחה ומפיק אירועי <a
+                                    href="http://www.poetryslam.org.il" target="_blank">פואטרי
+                                סלאם</a>,
+                                מתפרנס מתכנות, ובזמנו הפנוי
+                                לומד לתואר ראשון בתכנית פכ"ם.
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends 'users/base.html' %}
+{% load i18n humanize hackita %}
+
+{% block content %}
+
+    <h1>
+
+        {% if user.team_member %}
+            <div class="pull-right">
+                <a href="{% url "projects:list_votes" %}">
+                    <i class="fa fa-users"></i>
+                </a>
+            </div>
+        {% endif %}
+
+        {% trans "Projects" %}
+    </h1>
+
+    <ul class="list-group">
+
+        {% for object in published %}
+            <li class="list-group-item{% if object.vote %} list-group-item-warning{% endif %}">
+                {% if object.bid and object.bid.value %}
+                    <div class="pull-right label label-success">{{ object.bid.value }}
+                            <i class="fa fa-money"></i>
+                    </div>
+                {% endif %}
+                {% if object.vote %}
+                    <div class="label label-{{ object.vote.get_score_label }} pull-right">
+                        {{ object.vote.get_score_display }}
+                    </div>
+                {% endif %}
+                <h4 class="list-group-item-heading">
+                    {{ object|u }}
+                </h4>
+
+                <p class="list-group-item-text">
+                    {{ object.summary | urlizetrunc:50 | linebreaksbr }}
+                </p>
+            </li>
+        {% endfor %}
+
+    </ul>
+
+    {% if perms.projects.view_project %}
+
+        <ul class="list-group">
+
+            {% for object in object_list.unpublished %}
+                <li class="list-group-item{% if not object.is_published %} list-group-item-danger{% endif %}">
+                    <h4 class="list-group-item-heading">
+                        <a href="{{ object.get_update_url }}">{{ object }}</a>
+
+                    </h4>
+
+                    <p class="list-group-item-text">
+                        {{ object.summary | urlizetrunc:50 | linebreaksbr }}
+                    </p>
+                </li>
+            {% endfor %}
+
+            <li class="list-group-item list-group-item-warning">
+                <a href="{% url "projects:create" %}">{% trans "Create Project" %}</a>
+            </li>
+
+        </ul>
+    {% endif %}
+
+{% endblock %}

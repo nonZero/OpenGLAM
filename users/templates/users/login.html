@@ -1,0 +1,56 @@
+{% extends 'users/base.html' %}
+{% load i18n staticfiles bootstrap3 %}
+{% block content %}
+
+    <div id="page-login" class="row">
+
+        <div class="col-sm-6">
+            <div class="panel panel-info login-buttons">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        {% trans "Quick passwordless login/registration" %}
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <p><a class="btn btn-block btn-success btn-lg"
+                          href="{% url "social:begin" "google-oauth2" %}">
+                        <i class="fa fa-google"></i>
+                        {% trans "Using gmail based emails" %}
+                    </a></p>
+
+                    <p><a class="btn btn-block btn-primary btn-lg"
+                          href="{% url "users:signup" %}">
+                        <i class="fa fa-inbox"></i>
+                        {% trans "Using other email providers" %}
+                    </a></p>
+
+                    <div class="text-center">
+                        <a href="{% url "users:signup" %}">
+                            {% trans "Forgot your password?" %}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-sm-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h1 class="panel-title">{% trans "Password Login" %}</h1>
+                </div>
+                <div class="panel-body">
+                    <form method="post">
+                        {% csrf_token %}
+                            {% bootstrap_form form %}
+                        <div class="text-center">
+                            <button class="btn btn-primary btn-block">{% trans "Login" %}</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

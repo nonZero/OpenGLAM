@@ -1,0 +1,63 @@
+{% load i18n humanize hackita projects %}
+
+
+<li class="list-group-item{% if not note.visible_to_user %} list-group-item-warning{% endif %}"
+    id="note-{{ note.id }}">
+    <div class="list-group-item-heading">
+
+        {% if user.team_member %}
+
+            {% if note.is_open or note.closed_by %}
+                <div class="pull-right">
+                    <span class="label label-info">
+                        {% if note.is_open %}
+                            <i class="fa fa-exclamation"></i>
+                            {% trans "Open" %}
+                        {% else %}
+                            {% if note.closed_by %}
+                                {% trans "Closed by" %}
+                                {{ note.closed_by }},
+                                {{ note.closed_at|naturaltime }}
+                            {% endif %}
+                        {% endif %}
+                    </span>
+                    {% if note.is_open %}
+                        <span class="clickable close"
+                              data-url="{% url "users:close_note" note.id %}"
+                              title="{% trans "Close" %}">
+                            <i class="fa fa-close"></i>
+                            
+                        </span>
+                    {% endif %}
+                </div>
+            {% endif %}
+            {% if not note.visible_to_user %}
+                <div class="pull-right">
+                    <span class="label label-warning">
+                        <i class="fa fa-user-secret"></i>
+                        {% trans "Private" %}
+                    </span>
+                </div>
+            {% endif %}
+        {% endif %}
+        {% if note.user == note.author %}
+            <i class="fa fa-user"></i>
+        {% else %}
+            <i class="fa fa-users text-warning"></i>
+        {% endif %}
+        {% if show_user %}
+            <b>
+                {{ note.user|u }},
+            </b>
+            {% trans "By" %}
+        {% endif %}
+        {{ note.author|u }},
+        <span title="{{ note.created_at }}">{{ note.created_at|naturaltime }}</span>:
+
+
+    </div>
+    <div class="list-group-item-body">
+        {{ note.content|urlize|linebreaksbr }}
+    </div>
+</li>
+

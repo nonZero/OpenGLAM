@@ -1,0 +1,340 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-09-17 12:05+0300\n"
+"PO-Revision-Date: 2015-09-17 12:05+0300\n"
+"Last-Translator: Udi Oron <udioron@gmail.com>\n"
+"Language-Team: \n"
+"Language: he\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.8.4\n"
+
+msgid "Required field"
+msgstr "שדה חובה"
+
+msgid "control"
+msgstr "שליטה"
+
+msgid "0 - No knowledge"
+msgstr "0 - ללא ידע בתחום"
+
+msgid "1"
+msgstr "1"
+
+msgid "2 - Some knowledge"
+msgstr "2 - הכרות מסוימת"
+
+msgid "3"
+msgstr "3"
+
+msgid "4 - Good informal knowledge or Formal Education"
+msgstr "4 - ידע פורמלי בלבד"
+
+msgid "5"
+msgstr "5"
+
+msgid "6 - Some parctical work experience"
+msgstr "6 - נסיון פרקטי מועט"
+
+msgid "7"
+msgstr "7"
+
+msgid "8 - Considerable work experience (2+ years)"
+msgstr "8 - נסיון משמעותי (2+ שנים)"
+
+msgid "9"
+msgstr "9"
+
+msgid "10 - Full control of the technology"
+msgstr "10 - שליטה מוחלטת"
+
+msgid "n/a"
+msgstr "לא רלוונטי"
+
+msgid "new (incomplete application)"
+msgstr "בהרשמה"
+
+msgid "registered"
+msgstr "נרשם"
+
+msgid "decided not to participate"
+msgstr "החליט לא להשתתף"
+
+msgid "under discussion"
+msgstr "בדיון"
+
+msgid "to reject"
+msgstr "מועמד לדחיה"
+
+msgid "invite to interview"
+msgstr "להזמין לראיון"
+
+msgid "invited to interview"
+msgstr "הוזמן לראיון"
+
+msgid "did not attend interview"
+msgstr "לא התייצב ליום מיון"
+
+msgid "participated in interview"
+msgstr "השתתף ביום מיון"
+
+msgid "to waiting list"
+msgstr "להעביר לרשימת המתנה"
+
+msgid "waiting list"
+msgstr "ברשימת המתנה"
+
+msgid "to accept"
+msgstr "מועמד לקבלה"
+
+msgid "accepted"
+msgstr "התקבל"
+
+msgid "accepted and approved"
+msgstr "התקבל ואישר השתתפות"
+
+msgid "accepted and declined"
+msgstr "התקבל ודחה השתתפות"
+
+msgid "rejected"
+msgstr "נדחה"
+
+msgid "status"
+msgstr "סטטוס"
+
+msgid "created at"
+msgstr "מועד יצירה"
+
+msgid "last edited at"
+msgstr "מועד עריכה אחרונה"
+
+msgid "no answer supplied"
+msgstr "-- אין תשובה --"
+
+msgid "too low"
+msgstr "נמוכה"
+
+msgid "average"
+msgstr "ממוצעת"
+
+msgid "high"
+msgstr "גבוהה"
+
+msgid "very high"
+msgstr "גבוהה מאוד"
+
+msgid "does not fit"
+msgstr "לא מתאימ/ה"
+
+msgid "undecided / neutral"
+msgstr "ניטרלי / לא הוחלט"
+
+msgid "fit"
+msgstr "מתאימ/ה"
+
+msgid "highly fits"
+msgstr "מתאימ/ה מאוד"
+
+msgid "programming experience"
+msgstr "רקע ונסיון בפיתוח תוכנה"
+
+msgid "web development experience"
+msgstr "רקע ונסיון בפיתוח WEB"
+
+msgid "involvement in activism"
+msgstr "מעורבות באקטיביזם / אוריינות סדנאית"
+
+msgid "present and future availability"
+msgstr "זמינות בזמן התכנית ובעתיד"
+
+msgid "background in humanism"
+msgstr "רקע בהומניזם"
+
+msgid "communication skills"
+msgstr "יכולת תקשורת"
+
+msgid "overall_impression"
+msgstr "התרשמות כללית"
+
+msgid "Does the candidate fit the program?"
+msgstr "האם המועמד/ת מתאימ/ה לתכנית?"
+
+msgid "review comments"
+msgstr "הערות להערכה"
+
+msgid "Consider adding a user note instead "
+msgstr "הערות כלליות למשתמש יש להוסיף דרך \"הערות משתמש\""
+
+msgid "application review"
+msgstr "הערכה"
+
+msgid "application reviews"
+msgstr "הערכות"
+
+msgid "Registration"
+msgstr "הרשמה"
+
+msgid "Part"
+msgstr "חלק"
+
+msgid "Personal details"
+msgstr "פרטים אישיים"
+
+msgid "Enter Personal Details"
+msgstr "מילוי פרטים אישיים"
+
+msgid "Registration Questionnaire"
+msgstr "שאלון הרשמה"
+
+msgid "Review your answers"
+msgstr "הצגת התשובות שמילאת לשאלונים"
+
+msgid "Continue Questionnaire"
+msgstr "לחצ/י להמשך שאלון ההרשמה"
+
+msgid "Start Questionnaire"
+msgstr "לחצ/י להתחלת שאלון ההרשמה"
+
+msgid "Choose projects"
+msgstr "בחירת פרוייקטים"
+
+msgid "Pending your review"
+msgstr "ממתינים לסקירתך"
+
+msgid "Done!"
+msgstr "זה הכל!"
+
+msgid "Reviewed by you"
+msgstr "נסקרו על ידך"
+
+msgid "What are you waiting for?"
+msgstr "קדימה!"
+
+msgid "Notes"
+msgstr "הערות"
+
+msgid "Send note to the staff"
+msgstr "שליחת הערה לצוות התכנית"
+
+msgid "Add"
+msgstr "הוספה"
+
+msgid "Saved sucessfully."
+msgstr "נשמר בהצלחה."
+
+msgid "Send"
+msgstr "שלח/י"
+
+msgid "Registration Details"
+msgstr "פרטי ההרשמה"
+
+msgid "Edit Status"
+msgstr "עריכת סטטוס"
+
+msgid "Bulk Operations"
+msgstr "ביצוע פעולות"
+
+msgid "Go"
+msgstr "בצע"
+
+msgid "You"
+msgstr "את/ה"
+
+msgid "Questionnare"
+msgstr "שאלון"
+
+msgid "of"
+msgstr "מתוך"
+
+msgid "Applications"
+msgstr "מועמדים"
+
+msgid "Change Status"
+msgstr "שינוי סטטוס"
+
+msgid "Save"
+msgstr "שמירה"
+
+msgid "Total"
+msgstr "סך הכל"
+
+msgid "Review Application"
+msgstr "הערת מועמד"
+
+msgid "Change status"
+msgstr "שינוי סטטוס"
+
+msgid "Invite to event"
+msgstr "הזמנה לאירוע"
+
+msgid "Send survey"
+msgstr "שלח סקר"
+
+msgid "Edit"
+msgstr "עריכה"
+
+msgid "Cohorts"
+msgstr "דבוקות"
+
+msgid "Users"
+msgstr "משתמשים"
+
+msgid "Personal Details"
+msgstr "פרטים אישיים"
+
+msgid "Personal details saved successfully."
+msgstr "הפרטים נשמרו בהצלחה."
+
+msgid "Registration completed! Thank you very much!"
+msgstr "ההרשמה הסתיימה! תודה רבה!"
+
+#, python-format
+msgid "User registered: %s"
+msgstr "המשתמש/ת נרשמ/ה: %s"
+
+#, python-format
+msgid "'%s' was saved."
+msgstr "'%s' נשמר בהצלחה."
+
+msgid "Problems detected in form. Please fix your errors and try again."
+msgstr "נמצאו בעיות בטופס. אנא תקנ/י את הבעיות, ונסה/י שנית"
+
+msgid "Sent"
+msgstr "נשלח"
+
+msgid "Already sent"
+msgstr "כבר נשלח"
+
+msgid "Invited"
+msgstr "הוזמן"
+
+msgid "Already invited"
+msgstr "כבר נשלח"
+
+#~ msgid "This section will open during August."
+#~ msgstr "רשימת הפרויקטים תפתח לעיון במהלך חודש אוגוסט"
+
+#~ msgid "Unavailable"
+#~ msgstr "לא פנוי"
+
+#~ msgid "Available"
+#~ msgstr "פנוי"
+
+#~ msgid "Accepted to another cohort"
+#~ msgstr "התקבל לדבוקה אחרת"
+
+#~ msgid "In process"
+#~ msgstr "במסלול"
+
+#~ msgid "Graduated"
+#~ msgstr "סיים"
+
+#~ msgid "New User"
+#~ msgstr "משתמש חדש"
+
+#~ msgid "Continue Registration"
+#~ msgstr "המשך בהרשמה"

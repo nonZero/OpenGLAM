@@ -1,0 +1,41 @@
+server {
+    listen 80 default_server;
+    return 404;
+}
+
+server {
+    listen 80 default_server;
+    server_name {{redirect_host}};
+    return 301 $scheme://{{host}}$request_uri;
+}
+
+server {
+
+    listen 80;
+    server_name {{host}};
+
+    location /static/ {
+        alias {{dir}}/collected-static/;
+    }
+
+    location /uploads/ {
+        alias {{dir}}/uploads/;
+    }
+
+    location / {
+        proxy_pass_header Server;
+        proxy_set_header Host $http_host;
+        proxy_redirect off;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Scheme $scheme;
+        proxy_connect_timeout 80;
+        proxy_read_timeout 80;
+        proxy_pass http://localhost:{{port}}/;
+    }
+
+    # what to serve if upstream is not available or crashes
+    error_page 500 502 503 504 /static/50x.html;
+
+    client_max_body_size 25m;
+
+}

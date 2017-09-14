@@ -1,0 +1,208 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-09-14 00:19+0300\n"
+"PO-Revision-Date: 2017-09-14 00:20+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: he\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.0.3\n"
+
+msgid "is published"
+msgstr "פורסם?"
+
+msgid "title"
+msgstr "כותרת"
+
+msgid "slug"
+msgstr "סלאג"
+
+msgid "summary (markdown)"
+msgstr "סיכום (markdown)"
+
+msgid "summary (html)"
+msgstr "סיכום (html)"
+
+msgid "link"
+msgstr "קישור"
+
+msgid "project"
+msgstr "פרוייקט"
+
+msgid "projects"
+msgstr "פרוייקטים"
+
+msgid "uninterested"
+msgstr "לא מעוניינ/ת"
+
+msgid "neutral"
+msgstr "אין לי דעה"
+
+msgid "interested"
+msgstr "מעוניינ/ת"
+
+msgid "very interested"
+msgstr "מעוניינ/ת מאוד"
+
+msgid "created at"
+msgstr "מועד יצירה"
+
+msgid "public"
+msgstr "פומבי - הערתך תוצג בפני כל המשתמשים"
+
+msgid "private"
+msgstr "פרטי - הערתך תוצג בפני צוות האתר בלבד"
+
+msgid "comment view scope"
+msgstr "מי יוכל לצפות בהערה?"
+
+msgid "content"
+msgstr "תוכן"
+
+msgid "is reviewed"
+msgstr "ההערכה נסקרה על ידי הצוות"
+
+msgid "reviewed at"
+msgstr "מועד הסקירה"
+
+msgid "project comment"
+msgstr "הערה לפרויקט"
+
+msgid "project comments"
+msgstr "הערות לפרויקט"
+
+msgid "updated at"
+msgstr "מועד עדכון"
+
+msgid "project bid"
+msgstr "ניקוד משתמש לפרויקט"
+
+msgid "project bids"
+msgstr "ניקודי משתמש לפרויקט"
+
+msgid "Private"
+msgstr "פרטי"
+
+msgid "Deleted"
+msgstr "נמחק"
+
+msgid "Reviewed by"
+msgstr "נסקר על ידי"
+
+msgid "Unreviewed"
+msgstr "טרם נסקר"
+
+msgid "Bid for"
+msgstr "ניקוד משתמש עבור"
+
+msgid "Projects"
+msgstr "פרוייקטים"
+
+msgid "Send"
+msgstr "שליחה"
+
+msgid "Unpublished"
+msgstr "טרם פורסם"
+
+msgid "Full project statement"
+msgstr "למידע המלא על הפרויקט"
+
+msgid "Would you like to work on this project?"
+msgstr "האם ברצונך לעבוד על פרויקט זה?"
+
+msgid "Vote!"
+msgstr "שמירה"
+
+msgid "Saved sucessfully."
+msgstr "ההצבעה נשמרה בהצלחה."
+
+msgid "Login"
+msgstr "כניסה"
+
+msgid "Register"
+msgstr "הרשמה"
+
+msgid "Votes"
+msgstr "הצבעות"
+
+msgid "Comments"
+msgstr "הערות"
+
+msgid "Add Comment"
+msgstr "הוספת הערה חדשה"
+
+msgid "Your public name is:"
+msgstr "שמך יופיע בפני שאר המשתמשים כך:"
+
+msgid "Edit"
+msgstr "עריכה"
+
+msgid "Add"
+msgstr "הוספה"
+
+msgid "Update Project"
+msgstr "עדכון פרויקט"
+
+msgid "Create Project"
+msgstr "יצירת פרויקט"
+
+msgid "Save"
+msgstr "שמירה"
+
+msgid "Create"
+msgstr "יצירה"
+
+msgid "Edit Comment"
+msgstr "עריכת הערה"
+
+msgid "Latest Comments"
+msgstr "הערות אחרונות"
+
+msgid "Thank you!"
+msgstr "תודה רבה!"
+
+msgid "New bid"
+msgstr "הצבעה חדשה לפרויקטים"
+
+msgid "user"
+msgstr "משתמש"
+
+msgid "bid"
+msgstr "הצעה"
+
+msgid "Comment posted"
+msgstr "ההערה נשמרה"
+
+#~ msgid "Bad URL"
+#~ msgstr "כתובת בלתי תקינה"
+
+#~ msgid "google doc url"
+#~ msgstr "כתובת המסמך (url)"
+
+#~ msgid "content text"
+#~ msgstr "תוכן (טקסט)"
+
+#~ msgid "content html"
+#~ msgstr "תוכן (html)"
+
+#~ msgid "Go Fetch!"
+#~ msgstr "לך תביא!"
+
+#~ msgid "EDIT ME"
+#~ msgstr "ערוך אותי!!!"
+
+#~ msgid "Project refreshed succssfully."
+#~ msgstr "הפרויקט עודכן בהצלחה."
+
+#~ msgid "Error in form submission. Please try again."
+#~ msgstr "שגיאה במילוי הטופס. נא לנסות שנית."

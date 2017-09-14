@@ -1,0 +1,46 @@
+{% extends 'student_applications/bulk_base.html' %}
+{% load i18n humanize hackita staticfiles sa users gravatar %}
+
+{% block page_title %}
+    {% trans "Community" %}
+    |
+{% endblock %}
+
+{% block main_content %}
+
+    <h1>
+        {% trans "Community" %}
+    </h1>
+
+    <ul class="list-group">
+
+        {% for u in object_list %}
+
+            <li class="list-group-item  list-group-item-condensed">
+                {% if perms.student_applications.bulk_application %}
+                    <span class="pull-right">
+                        <input type="checkbox" name="users" value="{{ u.id }}"
+                               checked="1" data-email="{{ u.email }}">
+                    </span>
+
+                {% endif %}
+
+                {{ u.email|gravatar }}
+
+                <b><a href="{% url 'users:community_user' u.id %}">{{ u.community_name }}</a></b>
+
+                {% if u.community_email %}
+                    &bull;
+                    <a href="mailto:{{ u.community_email }}">{{ u.community_email }}</a>
+                {% endif %}
+                {% if u.community_contact_phone %}
+                    &bull;
+                    <a href="tel:{{ u.community_contact_phone }}">{{ u.community_contact_phone }}</a>
+                {% endif %}
+            </li>
+
+        {% endfor %}
+
+    </ul>
+
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'users/base.html' %}
+{% load i18n %}
+
+{% block content %}
+
+
+    <h2>
+        {% trans "Registration Details" %}
+    </h2>
+    {% include "student_applications/_answers.html" with u=user %}
+
+    </div>
+
+{% endblock %}

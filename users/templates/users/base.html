@@ -1,0 +1,118 @@
+{% extends 'website/base.html' %}
+{% load i18n gravatar static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static "css/user.css" %}">
+    {% block page_css %}
+    {% endblock %}
+{% endblock %}
+
+{% block content_container %}
+    <div class="container user-container">
+
+        {% if user.id %}
+            <ul class="list-group">
+                <li class="list-group-item user-bar">
+                    <div class="pull-right">
+                        <form method="post"
+                              action="{% url 'users:logout' %}">
+                            {% csrf_token %}
+                            <button type="submit"
+                                    class="btn-sm btn btn-default">{% trans 'Sign Out' %}</button>
+                        </form>
+                    </div>
+                    {% if not user.has_password %}
+                        <div class="pull-right">
+                            <a href="{% url "users:set_password" %}"
+                               class="btn btn-warning btn-sm">
+                                {% trans "Set password" %}
+                            </a>
+                            &nbsp;
+                        </div>
+                    {% endif %}
+                    {% if user.community_member %}
+                        <div class="pull-right">
+                            <a class="btn-sm btn btn-default" href="{% url "users:community_profile" %}">{% trans "My Community Profile" %}</a>
+                            &nbsp;
+                        </div>
+                    {% endif %}
+                    <div class="pull-right">
+                        <a class="btn-sm btn btn-default" href="{% url "users:set_names" %}">{% trans "My Profile" %}</a>
+                        &nbsp;
+                    </div>
+
+                    {{ user.email|gravatar:32 }}
+
+                    {% trans "You are logged in as" %} {{ user.email }}
+
+                    {#                        {% if user.community_member or user.is_staff %}#}
+                    {#                            &bull;#}
+                    {#                            <a href="{% url "community" %}">{% trans "Community" %}</a>#}
+                    {#                            &bull;#}
+                    {#                            <a href="{% url "project:list" %}">{% trans "Projects" %}</a>#}
+                    {#                        {% endif %}#}
+                    <br/>
+
+                </li>
+
+
+                {% if user.team_member or user.is_staff %}
+                    <li class="list-group-item list-group-item-warning">
+
+                        {% if user.is_staff %}
+                            <a class="pull-right" href="{% url "admin:index" %}">{% trans "Admin" %}</a>
+                        {% endif %}
+
+                        <a href="{% url "sa:app_list" %}">{% trans "Applications" %}</a>
+                        &bull;
+                        {#                                <a href="{% url "users:list" %}">{% trans "Users" %}</a>#}
+                        {#                                &bull;#}
+                        <a href="{% url "events:list" %}">{% trans "Events" %}</a>
+                        &bull;
+                        <a href="{% url "surveys:list" %}">{% trans "Surveys" %}</a>
+                        &bull;
+                        {# <a href="{% url "users_log" %}">{% trans "Log" %}</a>#}
+                        {# &bull;#}
+                        <a href="{% url "users:list_notes_open" %}">
+                            {% trans "Users Notes" %}
+                        </a>
+                        (<a href="{% url "users:list_notes" %}">{% trans "All" %}</a>)
+                        &bull;
+                        <a href="{% url "projects:list_comments" %}">
+                            {% trans "Project Comments" %}
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+
+        {% endif %}
+
+        {% if breadcrumbs %}
+            <ul class="breadcrumbs">
+                {% for title, url in breadcrumbs %}
+                    <li>
+                        <a href="{{ url }}">{{ title }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+
+
+
+        {% include 'users/_messages.html' %}
+
+        <div>
+            {% block content %}
+            {% endblock %}
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                לעיונך, הנה <a href="{% url 'terms' %}">הצהרת הפרטיות</a>
+                שלנו.
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{% load i18n hackita humanize %}
+
+<li class="list-group-item{% if note.author != user %} list-group-item-warning{% endif %}">
+    <div class="list-group-item-heading">
+        {% if note.author == user %}
+            <i class="fa fa-user"></i>
+            <b>{% trans "You" %}</b>,
+        {% else %}
+            <i class="fa fa-users"></i>
+            <b>{{ note.author }}</b>,
+        {% endif %}
+        <span title="{{ note.created_at }}">{{ note.created_at|naturaltime }}</span>:
+    </div>
+    <div class="list-group-item-body">
+        {{ note.content|linebreaksbr }}
+    </div>
+</li>

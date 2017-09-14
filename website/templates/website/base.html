@@ -1,0 +1,131 @@
+{% load i18n static %}
+<!DOCTYPE html>
+<html class="no-js" lang="en" dir="rtl">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>
+        {% block page_title %}
+            {% if view.page_title %}
+                {{ view.page_title }}
+                |
+            {% endif %}
+        {% endblock %}
+        תרבות פתוחה
+        OGLAM
+    </title>
+
+    <link rel="stylesheet"
+          href="{% static "vendor/bootstrap/css/bootstrap-rtl.css" %}">
+    <link rel="stylesheet"
+          href="{% static "vendor/font-awesome/css/font-awesome.css" %}">
+    <link rel="stylesheet" href="{% static "css/oglam.css" %}">
+
+    {% block extra_css %}
+    {% endblock %}
+
+
+    <link href='//fonts.googleapis.com/css?family=Montserrat:400,700&subset=latin'
+          rel='stylesheet' type='text/css'>
+    <link href="{% static "css/fonts/alef.css" %}" rel='stylesheet'
+          type='text/css'>
+
+    <link href="{% static "img/favicon.ico" %}" rel="icon" type="image/png"/>
+
+    <meta property="og:image" content="{{ request.scheme }}://
+
+            {{ request.get_host }}{% static "img/hackita-02-screenshot.png" %}"/>
+
+</head>
+<body dir="rtl">
+
+<nav class="navbar navbar-inverse top-bar">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed"
+                    data-toggle="collapse"
+                    data-target=".navbar-collapse"
+                    aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand{% if view.name == 'home' %} active{% endif %}"
+               href="{% url 'home' %}">
+                תרבות פתוחה
+                OGLAM
+            </a>
+        </div>
+
+        {% if not user.id %}
+            <ul class="nav navbar-nav navbar-right collapse navbar-collapse visible-md visible-lg">
+                <li><a href="{% url "users:login" %}">{% trans "Login" %}</a>
+                </li>
+            </ul>
+        {% endif %}
+
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                {#                <li{% if view.name == 'program' %} class="active"{% endif %}>#}
+                {#                    <a href="{% url 'program' %}">על התכנית</a>#}
+                {#                </li>#}
+                {#                <li{% if view.name == 'about' %} class="active"{% endif %}>#}
+                {#                    <a href="{% url 'about' %}">#}
+                {#                        עלינו#}
+                {#                    </a>#}
+                {#                </li>#}
+                {#                <li{% if view.name == 'faq' %} class="active"{% endif %}>#}
+                {#                    <a href="{% url 'faq' %}">שאלות ותשובות</a>#}
+                {#                </li>#}
+                <li{% if view.name == 'projects' %} class="active"{% endif %}>
+                    <a href="{% url 'projects:list' %}">{% trans "Projects" %}</a>
+                </li>
+
+                {% if user.community_member %}
+                    <li{% if view.name == 'community' %}
+                        class="active"{% endif %}>
+                        <a href="{% url 'users:community' %}">{% trans "Community" %}</a>
+                    </li>
+                {% endif %}
+
+                {% if not user.id %}
+                    <li class="hidden-sm hidden-md hidden-lg"><a
+                            href="{% url "users:login" %}">{% trans "Login" %}</a>
+                    </li>
+                {% endif %}
+            </ul>
+            <a id="registration-btn" class="btn btn-primary navbar-btn"
+               href="{% url 'sa:dashboard' %}">
+                <b>להרשמה</b>
+                <i class="fa fa-play fa-flip-horizontal"></i>
+            </a>
+
+        </div>
+    </div>
+</nav>
+
+{% block content_container %}
+{% endblock %}
+
+<div id="sponsors">
+    <div class="text-center hasadna-block">
+        <a href="http://www.hasadna.org.il/">
+            <img src="{% static "img/pkw_logo_tagline.png" %}">
+        </a>
+    </div>
+</div>
+
+
+<script src="{% static "vendor/jquery/jquery.js" %}"></script>
+<script src="{% static "vendor/bootstrap/js/bootstrap.js" %}"></script>
+
+{% block scripts %}
+{% endblock %}
+
+{% include "website/_analytics.html" %}
+
+</body>
+</html>

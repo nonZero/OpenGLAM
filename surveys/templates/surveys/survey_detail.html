@@ -1,0 +1,130 @@
+{% extends 'student_applications/bulk_base.html' %}
+{% load i18n humanize hackita staticfiles %}
+
+{% block main_content %}
+
+    <h1>
+        {{ object }}
+    </h1>
+
+    {% if object.email_content %}
+        <div class="panel htmlcontent">
+            {{ object.email_content|safe }}
+        </div>
+    {% endif %}
+
+
+    {% if object.answers.count %}
+
+        <div class="row">
+
+            <div class="col-lg-8">
+                <ul class="list-group answers">
+
+                    {% for a in object.answers.all %}
+                        <li class="list-group-item{% if not a.is_open %} list-group-item-warning{% endif %}">
+                            <div class="list-group-item-heading">
+                                {% if not a.is_open %}
+                                    <div class="pull-right">
+                                        &nbsp;
+                                        <i class="fa fa-check"></i>
+                                    </div>
+                                {% endif %}
+                                {% if a.answered_at %}
+                                    <a class="badge pull-right"
+                                       data-toggle="collapse"
+                                       href="#answer-{{ a.id }}"
+                                       title="{{ a.answered_at }}">
+                                        {{ a.answered_at|naturaltime }}
+
+                                        <i class="fa fa-angle-down"></i>
+
+                                    </a>
+                                {% endif %}
+                                <input class="user-email" type="checkbox"
+                                       name="users"
+                                       value="{{ a.user.id }}"
+                                       data-email="{{ a.user.email }}"
+                                        {% if not a.answered_at %}
+                                       checked="1"
+                                        {% endif %}
+                                        />
+
+                                {{ a.user|u }}
+
+                                {% if a.answered_at %}
+                                    {% with a.get_pretty as a %}
+                                        {% for field in a.fields %}
+                                            {% if field.html %}
+                                                <span class="label label-info key-{{ field.key }}"
+                                                      title="{{ field.label }}"
+                                                      data-key="{{ field.key }}"
+                                                      data-value="{{ field.html }}"
+                                                        >{{ field.html|truncatechars:20 }}</span>
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% endwith %}
+
+                                {% endif %}
+                            </div>
+
+                            {% if a.answered_at %}
+                                <div class="list-group-item-body">
+
+                                    <div class="collapse"
+                                         id="answer-{{ a.id }}">
+                                        {% with a.get_pretty as a %}
+                                            {% for field in a.fields %}
+                                                {% if field.html %}
+                                                    <div class="user-answer">
+                                                        <div class="user-answer-title">
+                                                            {{ field.label }}
+                                                        </div>
+                                                        <div class="user-answer-content">
+                                                            {{ field.html|urlize|linebreaksbr }}
+                                                        </div>
+                                                    </div>
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% endwith %}
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </li>
+                        {% if forloop.last %}
+                            </ol>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+
+            </div>
+
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block custom_bulk_ops %}
+    <div class="form-group">
+        <div class="col-sm-offset-4 col-sm-8">
+            <label for="id_resend">
+                <input id="id_resend" type="checkbox" name="resend" value="1"/>
+                {% trans "resend survey" %}
+            </label>
+        </div>
+        <div class="col-sm-offset-4 col-sm-8">
+            <label for="id_close">
+                <input id="id_close" type="checkbox" name="close" value="1"/>
+                {% trans "close marked invites" %}
+            </label>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block page_scripts %}
+
+    <script src="{% static "js/survey_detail.js" %}"></script>
+
+{% endblock %}
+

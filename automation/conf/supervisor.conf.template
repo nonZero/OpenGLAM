@@ -1,0 +1,6 @@
+[program:{{webuser}}]
+directory = {{dir}}
+user = {{webuser}}
+command = {{dir}}server.sh
+stdout_logfile = {{logdir}}app.log
+stderr_logfile = {{logdir}}app.log

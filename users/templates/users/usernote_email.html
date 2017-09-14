@@ -1,0 +1,50 @@
+{% load i18n %}
+
+<div dir="rtl" style="padding:3px;">
+
+    <h1>
+        {{ title }}
+    </h1>
+
+    {% if managers %}
+        <p>
+            <b>
+                {% if note.visible_to_user %}
+                    {% trans "visible to user" %}
+                {% else %}
+                    {% trans "hidden from user" %}
+                {% endif %}
+                {% if sent_to_user %}
+                    &bull;
+                    {% trans "sent to user" %}
+                {% endif %}
+            </b>
+            &bull;
+            <a href="{{ base_url }}{{ note.user.get_absolute_url }}">
+                {{ note.user }}
+            </a>
+            &lt;<a
+                href="mailto:{{ note.user.email }}">{{ note.user.email }}</a>&gt;
+
+        </p>
+    {% endif %}
+
+    <div style="margin:3px; padding:3px;">
+        {{ note.author }} {% trans "wrote" %}:
+
+        <blockquote>
+            {{ note.content|urlize|linebreaksbr }}
+        </blockquote>
+    </div>
+
+    <p style="text-align: center">
+        {% trans "To respond click here" %}:
+        <strong>
+            <a href="{{ base_url }}{{ url }}">
+                {{ base_url }}{{ url }}
+            </a>
+        </strong>
+    </p>
+
+
+</div>

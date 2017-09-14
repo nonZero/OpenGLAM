@@ -1,0 +1,5 @@
+#!/bin/bash
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+source {{venv}}/bin/activate
+cd $DIR
+exec gunicorn -p {{pidfile}} -b 127.0.0.1:{{port}} -w 2 -t 90 oglam.wsgi:application

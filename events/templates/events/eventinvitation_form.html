@@ -1,0 +1,27 @@
+{% extends 'users/base.html' %}
+{% load i18n %}
+{% load hackita %}
+
+{% block content %}
+
+    <h1>
+        {{ object.event|u }}
+        &gt;
+        {{ object.user|u }}
+    </h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+
+        {% if request.GET.from %}
+            <input type="hidden" name="from" value="{{ request.GET.from }}"/>
+        {% endif %}
+
+        <div class="form-group">
+            <button class="btn btn-primary">{% trans "Save" %}</button>
+        </div>
+
+    </form>
+
+{% endblock %}

@@ -1,0 +1,191 @@
+{% extends 'users/base.html' %}
+{% load i18n humanize hackita staticfiles %}
+
+{% block page_title %}
+    {{ object }}
+    |
+    {% trans "Users" %}
+    |
+{% endblock %}
+
+{% block content %}
+
+    <ol class="breadcrumb">
+        <li>
+            <a href="{% url "users:list" %}">
+                {% trans "Users" %}
+            </a>
+        </li>
+    </ol>
+
+    <h1>
+        <div class="pull-right">
+            <a href="mailto:{{ object.email }}">{{ object.email }}</a>
+        </div>
+        {{ object|u }}
+    </h1>
+
+    {% with u=object %}
+        {% if object.personalinfo %}
+            {% include "users/_personal_info.html" %}
+        {% endif %}
+    {% endwith %}
+
+    <div class="row">
+        {% with app=object.application %}
+            {% if app %}
+
+                <div class="col-md-6">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">
+                                {% trans "Application Reviews" %}
+                            </h3>
+                        </div>
+
+                        <ul class="list-group">
+                            {% for review in app.reviews.all %}
+                                <li class="list-group-item">
+                                    {{ review.user|u }}
+                                    <ul class="list-inline">
+                                        {% for label, value in review.get_details %}
+                                            <li>
+                                                <b>{{ label }}:</b>
+                                                {{ value }}
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                    {% if review.comments %}
+                                        <blockquote>
+                                        {{ review.comments|linebreaksbr }}
+                                        </blockquote>
+                                    {% endif %}
+                                </li>
+                            {% endfor %}
+                            <li class="list-group-item">
+                                <a class="btn btn-primary btn-block"
+                                   href="{% url "sa:app_review" app.id %}">
+                                    {% trans "Review" %}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <div class="pull-right">
+                            <a class="btn btn-primary btn-xs"
+                               data-toggle="collapse" href="#addnote">
+                                <i class="fa fa-plus"></i>
+                            </a>
+                        </div>
+                        {% trans "User Notes" %}
+                    </h3>
+                </div>
+
+                <div id="addnote" class="panel-body collapse">
+                    <div class="list-group-item-heading">
+                        <b>{% trans "Add Note" %}</b>
+                    </div>
+
+                    <div class="list-group-item-body">
+                        <form method="post" id="noteform">
+                            {% csrf_token %}
+                            {{ note_form }}
+                            <button class="btn btn-primary"
+                                    disabled="1">{% trans "Add" %}</button>
+                            <div class="save">
+                            <span class="loader collapse">
+                                <i class="fa fa-spin fa-spinner"></i>
+                            </span>
+                            </div>
+                            <div class="ok collapse text-success">
+                                <i class="fa fa-check"></i>
+                                {% trans "Saved sucessfully." %}
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <ul class="list-group" id="notes">
+
+                    {% for note in object.notes.all %}
+                        {% include "users/_user_note.html" %}
+                    {% endfor %}
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        {% trans "Project Comments" %}
+                    </h3>
+                </div>
+
+                <ul class="list-group" id="comments">
+                    {% for c in object.project_comments.desc %}
+                        {% include "projects/_project_comment.html" with show_project=True %}
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            {% if perms.projects.view_projectvote %}
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        {% trans "Project Votes" %}
+                    </div>
+
+                    {% regroup object.project_votes.desc by get_score_display as groups %}
+
+                    <ul class="list-group">
+                        {% for group in groups %}
+                            <li class="list-group-item">
+                                <b class="list-group-item-heading">
+                                    {{ group.grouper }}
+                                </b>
+
+                                <div class="list-group-item-body">
+                                    <ul class="list-unstyled">
+                                        {% for item in group.list %}
+                                            <li>
+                                                {{ item.project|u }}
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    {% if object.application %}
+        {% include "student_applications/_answers.html" with u=object accordion=True %}
+    {% endif %}
+
+
+
+
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static "js/csrf.js" %}"></script>
+    <script src="{% static "vendor/jquery.form.js" %}"></script>
+    <script src="{% static "js/user_detail.js" %}"></script>
+{% endblock %}
+

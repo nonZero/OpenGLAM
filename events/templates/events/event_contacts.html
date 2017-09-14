@@ -1,0 +1,61 @@
+{% load i18n humanize staticfiles hackita %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet"
+          href="{% static "vendor/bootstrap/css/bootstrap-rtl.css" %}">
+    <link rel="stylesheet"
+          href="{% static "vendor/font-awesome/css/font-awesome.css" %}">
+</head>
+
+<body dir="rtl">
+
+<div class="container-fluid">
+
+    <h2>
+        {{ object.title }}
+    </h2>
+
+    <ul class="list-group">
+        {% for i in invites %}
+            {% with info=i.user.personalinfo %}
+
+                <li class="list-group-item">
+                    <div class="pull-right">
+                        {{ i.get_status_display }}
+                    </div>
+                    {{ forloop.counter }}.
+                    &nbsp;
+                    <i class="fa fa-square-o"></i>
+                    &nbsp;
+
+                    {% if info %}
+                        <b>
+                            {{ info.hebrew_first_name }}
+                            {{ info.hebrew_last_name }}
+                        </b>
+                        {% if info.main_phone %}
+                            ({{ info.main_phone }})
+                        {% endif %}
+                    {% else %}
+                        {{ i.user }}
+                    {% endif %}
+
+                    {% if i.note %}
+                        <br/>
+                        <div style="margin: 0 20px">
+                            {{ i.note|linebreaksbr }}
+                        </div>
+                    {% endif %}
+
+                </li>
+
+            {% endwith %}
+        {% endfor %}
+    </ul>
+
+</div>
+
+</body>
+</html>

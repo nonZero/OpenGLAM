@@ -1,0 +1,33 @@
+{% load i18n sa users %}
+
+{% with info=u.personalinfo %}
+    <div class="well">
+        {{ info.hebrew_first_name }} {{ info.hebrew_last_name }}
+        {{ info.english_first_name }} {{ info.english_last_name }}
+        ({{ info.get_gender_display }})
+
+        {% if info.main_phone %}
+            <a href="tel://{{ info.main_phone }}"><i
+                    class="fa fa-phone"></i> {{ info.main_phone }}</a>
+        {% endif %}
+        {% if info.alt_phone %}
+            (<a href="tel://{{ info.alt_phone }}">{{ info.alt_phone }}</a>)
+        {% endif %}
+        &bull;
+        {{ info.address|default:'' }}
+        {{ info.city|default:'' }}
+        &nbsp;
+        <a href="{% url "users:vcf" u.id %}"><i class="fa fa-download"></i></a>
+        &nbsp;
+
+        {% with app=u.application %}
+            {% if app %}
+                {% app_status app edit=True %}
+            {% endif %}
+        {% endwith %}
+
+        {% user_tags u edit=True %}
+
+
+    </div>
+{% endwith %}

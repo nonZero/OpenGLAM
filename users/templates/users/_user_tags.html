@@ -1,0 +1,16 @@
+{% load i18n %}
+
+{% for ut in u.tags.all %}
+    &nbsp;
+    <span class="label label-default">
+                <i class="fa fa-tag"></i>
+                {{ ut.tag }}
+            </span>
+{% endfor %}
+{% if edit %}
+    &nbsp;
+    <a class="btn btn-default btn-xs"
+       href="{% url "users:tags" u.id %}" title="{% trans "Edit Tags" %}">
+        <i class="fa fa-tags"></i>
+    </a>
+{% endif %}

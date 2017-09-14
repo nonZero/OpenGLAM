@@ -1,0 +1,53 @@
+{% extends 'student_applications/bulk_base.html' %}
+{% load i18n humanize hackita sa users staticfiles %}
+
+{% block main_content %}
+
+    <h1 class="page-title">
+        {% trans "Applications" %}
+    </h1>
+
+    <ul class="list-inline">
+        <li>
+            <a href="{% url "sa:app_list" %}"
+               class="label label-{% if not view.status %}primary{% else %}default{% endif %}">{% trans "Total" %}: {{ total }}</a>
+        </li>
+        {% for group in agg %}
+            <li>
+                <a href="{% url "sa:app_list" %}?status={{ group.status }}"
+                   class="label label-{% if view.status == group.status %}primary{% else %}default{% endif %}">{{ group.label }}: {{ group.count }}</a>
+            </li>
+
+        {% endfor %}
+
+    </ul>
+
+    <ul class="list-group">
+        {% for app in object_list %}
+            {% with app.user as u %}
+
+                <li class="list-group-item">
+
+                    <input type="checkbox" name="users"
+                           value="{{ app.user.id }}" checked="1" data-email="{{ app.user.email }}">
+                    {{ forloop.counter }}.
+
+                    {{ app.user|u }}
+
+                    <span dir="ltr">&lt;{{ u.email }}&gt;</span>
+
+                    {% app_status app %}
+
+                    &nbsp;
+
+                        <span title="{{ app.last_form_filled }}">
+                            {{ app.last_form_filled|naturaltime }}
+                        </span>
+
+                    {% user_tags app.user %}
+
+                </li>
+            {% endwith %}
+        {% endfor %}
+    </ul>
+{% endblock %}

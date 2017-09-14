@@ -1,0 +1,51 @@
+{% extends 'users/base.html' %}
+{% load i18n humanize hackita staticfiles %}
+
+{% block content %}
+
+    <h1>
+        {% trans "Projects" %}
+    </h1>
+
+    <div class="blocks">
+        {% for object in object_list.by_title %}
+            <div class="block">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <div class="pull-right">
+                            <i class="fa fa-arrows"></i>
+                        </div>
+                        {{ object|u }}
+                    </div>
+
+                    {% regroup object.votes.interested.accepted_users.desc by get_score_display as groups %}
+
+                    <ul class="list-group">
+                        {% for group in groups %}
+                            <li class="list-group-item">
+                                <b class="list-group-item-heading">
+                                    {{ group.grouper }}
+                                </b>
+
+                                <div class="list-group-item-body">
+                                    <ul class="list-inline">
+                                        {% for item in group.list|shuffle %}
+                                            <li class="user" data-id="{{ item.user.id }}">
+                                                {{ item.user|u }}
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static "vendor/jquery-sortable.js" %}"></script>
+    <script src="{% static "js/project_list_votes.js" %}"></script>
+{% endblock %}

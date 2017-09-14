@@ -1,0 +1,43 @@
+{% extends 'users/base.html' %}
+{% load i18n humanize hackita staticfiles sa users %}
+
+{% block page_title %}
+    {% trans "Users" %}
+    |
+{% endblock %}
+
+{% block content %}
+
+    <h1>
+        {% trans "Users" %}
+    </h1>
+
+    <ul class="list-group">
+        {% for u in object_list %}
+            {% with app=u.application %}
+                <li class="list-group-item">
+
+                    {% if u.hebrew_display_name %}
+                        <span dir="rtl">{{ u.hebrew_display_name }}</span>
+                    {% endif %}
+
+                    <span dir="ltr">&lt;{{ u|u:'email' }}&gt;</span>
+                    <span dir="rtl">&nbsp;</span>
+                    {% if app %}
+                        {% app_status app %}
+                    {% endif %}
+                    </span>
+                    {% user_tags u %}
+                </li>
+            {% endwith %}
+        {% endfor %}
+    </ul>
+
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static "js/csrf.js" %}"></script>
+    <script src="{% static "vendor/jquery.form.js" %}"></script>
+    <script src="{% static "js/project_detail.js" %}"></script>
+{% endblock %}
+

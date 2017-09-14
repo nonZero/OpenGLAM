@@ -1,0 +1,53 @@
+ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;
+ssl_ciphers         AES128-SHA:AES256-SHA:RC4-SHA:DES-CBC3-SHA:RC4-MD5;
+ssl_session_cache   shared:SSL:10m;
+ssl_session_timeout 10m;
+ssl_certificate    /etc/letsencrypt/live/oglam.hasadna.org.il/fullchain.pem;
+ssl_certificate_key /etc/letsencrypt/live/oglam.hasadna.org.il/privkey.pem;
+
+server {
+    listen 80 default_server;
+    return 404;
+}
+
+server {
+    listen 80;
+    server_name {{redirect_host}} {{host}};
+    return 301 https://{{host}}$request_uri;
+}
+
+server {
+    keepalive_timeout   70;
+
+    listen 443 ssl;
+    server_name {{host}};
+
+    location /.well-known/ {
+        root /home/le/webroot/;
+    }
+
+    location /static/ {
+        alias {{dir}}/collected-static/;
+    }
+
+    location /uploads/ {
+        alias {{dir}}/uploads/;
+    }
+
+    location / {
+        proxy_pass_header Server;
+        proxy_set_header Host $http_host;
+        proxy_redirect off;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Scheme $scheme;
+        proxy_connect_timeout 80;
+        proxy_read_timeout 80;
+        proxy_pass http://localhost:{{port}}/;
+    }
+
+    # what to serve if upstream is not available or crashes
+    error_page 500 502 503 504 /static/50x.html;
+
+    client_max_body_size 25m;
+
+}

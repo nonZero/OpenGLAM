@@ -1,0 +1,301 @@
+h2 {
+    margin-top: 5px;
+    color: black;
+}
+
+body.dragging, body.dragging * {
+  cursor: move !important;
+}
+
+.dragged {
+  position: absolute;
+  opacity: 0.5;
+  z-index: 2000;
+}
+
+.deleted {
+    text-decoration: line-through;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.panel-primary .panel-heading a {
+    color: white;
+}
+
+.alert-error {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+}
+
+.alert-error hr {
+    border-top-color: #e4b9c0;
+}
+
+.alert-error .alert-link {
+    color: #843534;
+}
+
+.list-group-item-condensed {
+    padding: 5px 10px;
+
+}
+.user-container {
+    margin-top: 20px;
+    border-bottom: 5px solid #f7f7f7;
+}
+
+.user-content {
+}
+
+.user-bar .btn {
+}
+
+.userpanel > .left {
+    margin-top: -7px;
+}
+
+.row .q13e-top {
+    margin-bottom: 1em;
+}
+
+.registration-step {
+    margin: 15px;
+}
+
+.register .qprogress {
+    border: #ddd 1px solid;
+    padding: 0.2em 1em 0;
+    background: white;
+    margin-top: 0;
+}
+
+@media only screen and (min-width: 768px) {
+    .register .qprogress {
+    }
+}
+
+.qprogress p {
+    margin-bottom: 0
+}
+
+.q13e {
+    padding-top: 0.75em;
+    padding-bottom: 0.75em;
+}
+
+.q13e h1 {
+    font-size: 2em;
+    margin-bottom: 0;
+}
+
+.q13e .fc {
+    background: #f7f7f7;
+    padding: 9px 6px;
+    margin-bottom: 12px;
+    border: 1px solid #ddd;
+}
+
+.q13e .fc input,
+.q13e .fc textarea {
+    margin-bottom: 0;
+}
+
+.q13e .fc textarea {
+    min-height: 12em;
+    resize: vertical;
+}
+
+.q13e .fc > label {
+    font-size: 1em;
+}
+
+.q13e .fc label {
+    font-weight: bold;
+}
+
+.q13e p.helptext {
+    margin-top: 0em;
+    margin-bottom: 0;
+    padding: 0 0.2em;
+    font-style: italic;
+    line-height: 1.2em;
+}
+
+.q13e .choices {
+    margin-bottom: 0;
+}
+
+.q13e .error .choices, .q13e .error .controlfield {
+    border: 1px solid #c60f13;
+}
+
+.q13e .choices > li {
+    margin-right: 1.5em;
+    list-style-type: none;
+    list-style-position: inside;
+    text-indent: -1.5em;
+    padding: 0 0 6px 0;
+    line-height: 0.8em;
+}
+
+.q13e .choices > li input {
+    width: 1.5em;
+}
+
+.q13e .choices > li label {
+    display: inline;
+}
+
+.error small.error {
+    margin-top: 0;
+}
+
+.q13e .form-actions input {
+    margin: 0;
+}
+
+.control-legend label {
+    display: inline-block;
+    background: #e0e0e0;
+    padding: 3px 2px;
+    margin-left: 5px
+}
+
+.section-container.vertical-tabs > section > .title,
+.section-container.vertical-tabs > .section > .title {
+    overflow: hidden;
+}
+
+table.users {
+    width: 100%;
+}
+
+table.users td.uid, table.users td.uanswers {
+    width: 50px;
+}
+
+table.users td.uemail, table.users td.uname {
+    width: 250px;
+}
+
+.user-answers.section-container.vertical-tabs > section > .content {
+    background: #fcfcfc;
+}
+
+.user-answer {
+    margin-bottom: 1.4em;
+}
+
+.user-answer-title {
+    font-weight: bold;
+    margin-bottom: 2px;
+}
+
+.user-answer-content {
+    padding: 6px;
+    background: white;
+    border: 1px solid #ccc;
+}
+
+.cohort-list li a {
+    background: #f0f0f0;
+}
+
+.cohort-list li.active a {
+    background: none;
+    color: black;
+}
+
+.tagged .tag {
+    margin: 3px 0;
+}
+
+.tag form {
+    display: inline;
+}
+
+.tag form button {
+    margin: 0;
+    color: black;
+    background: none;
+    border: none;
+    padding: 1px;
+}
+
+.users .label {
+    margin: 3px;
+}
+
+input.user-checkbox {
+    margin-bottom: 0;
+}
+
+.ltrfield {
+    direction: ltr;
+}
+
+.codefield {
+    direction: ltr;
+    font-family: "courier new";
+}
+
+.label-control {
+    display: block;
+    color: #333;
+    border: 1px solid black;
+    border-radius: 3px;
+    white-space: normal;
+    /*margin-bottom: 4px;*/
+}
+
+.blocks {
+    -moz-column-width: 18em;
+    -webkit-column-width: 18em;
+    -moz-column-gap: 1em;
+    -webkit-column-gap: 1em;
+}
+
+.blocks .block {
+    display: inline-block;
+    padding: .25rem;
+    margin: .25rem;
+    width: 100%;
+}
+
+.blocks .block .user {
+    border-radius: 5px;
+    background: #5bc0de;
+    display: inline-block;
+    margin-bottom: 3px;
+}
+
+.blocks .block .user a {
+    color: white;
+}
+
+.blocks .block .user.dimmed {
+    background: #ddd ;
+}
+
+.blocks .block .fa-arrows {
+    cursor: move;
+}
+
+.blocks .block.placeholder {
+  position: relative;
+}
+
+.blocks .block.placeholder:before {
+  position: absolute;
+  /** Define arrowhead **/
+}
+
+
+#notes .list-group-item {
+    overflow: hidden;
+}
+

@@ -1,0 +1,41 @@
+{% extends 'users/base.html' %}
+{% load i18n hackita bootstrap3 %}
+
+{% block content %}
+
+    <ol class="breadcrumb">
+        <li>
+            <a href="{% url "sa:app_list" %}">
+                {% trans "Applications" %}
+            </a>
+        </li>
+        <li>
+            {{ application|u }}
+        </li>
+    </ol>
+
+    <h1>
+        {% trans "Change Status" %}
+    </h1>
+
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <form method="post">
+                {% csrf_token %}
+                {% bootstrap_form form %}
+                <div class="form-actions">
+                    <input class="btn btn-primary"
+                           type="submit"
+                           value="{% trans "Save" %}"/>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+
+
+
+
+{% endblock %}

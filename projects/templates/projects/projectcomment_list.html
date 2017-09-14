@@ -1,0 +1,42 @@
+{% extends 'users/base.html' %}
+{% load i18n humanize hackita staticfiles %}
+
+{% block page_title %}
+    {{ object.title }}
+    |
+    {% trans "Latest Comments" %}
+    |
+    {% trans "Projects" %}
+    |
+{% endblock %}
+
+{% block content %}
+
+    <ol class="breadcrumb">
+        <li>
+            <a href="{% url "projects:list" %}">
+                {% trans "Projects" %}
+            </a>
+        </li>
+    </ol>
+
+    <h1>
+        {% trans "Latest Comments" %}
+    </h1>
+
+
+
+    <ul class="list-group" id="comments">
+        {% for c in object_list %}
+            {% include "projects/_project_comment.html" with show_project=True %}
+        {% endfor %}
+    </ul>
+
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static "js/csrf.js" %}"></script>
+    <script src="{% static "vendor/jquery.form.js" %}"></script>
+    <script src="{% static "js/project_detail.js" %}"></script>
+{% endblock %}
+

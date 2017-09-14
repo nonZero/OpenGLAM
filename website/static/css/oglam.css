@@ -1,0 +1,429 @@
+body {
+    font-family: 'Alef', sans-serif;
+    direction: rtl;
+}
+
+input[type=email] {
+    direction: ltr !important;
+}
+
+.ib {
+    display: inline-block;
+}
+
+.top-bar {
+}
+
+.pull-up {
+    margin-top: -20px;
+}
+
+.top-bar.navbar {
+    border-radius: 0;
+}
+
+.top-bar .navbar-brand {
+    text-shadow: 2px 2px black;
+    color: white;
+    font-weight: bold;
+}
+
+.top-bar .navbar-brand.active {
+    background: black;
+}
+
+h2 {
+    margin-top: 35px;
+    color: white;
+}
+
+.title-area h1 {
+    font-family: 'Montserrat', 'Alef', sans-serif;
+}
+
+.home-top {
+    background: black;
+}
+
+#intro {
+    padding: 30px 0 0;
+    background: url('../img/background-levels-bc-cb.jpg') no-repeat center center;
+    max-width: 100%;
+    min-height: 400px;
+    background-size: cover;
+    color: #eee;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+#intro .shady {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    margin: 0 0 30px 0;
+    text-align: right;
+}
+
+#intro .shady ul {
+    font-size: larger;
+}
+
+#intro h1 {
+    margin-top: 5px;
+    margin-bottom: 0;
+    text-shadow: 2px 2px black;
+    color: white;
+    font-weight: bold;
+}
+
+#intro h3 {
+    margin-top: 3px;
+    margin-bottom: 3px;
+    color: white;
+    font-weight: bold;
+}
+
+#intro h1, #intro h3 {
+    color: white;
+    font-family: 'Montserrat', 'Alef', sans-serif;
+}
+
+.things {
+    position: relative;
+    display: inline-block;
+    width: 42%;
+    height: 1em;
+}
+
+.things span {
+    position: absolute;
+    top: 3px;
+    right: 0;
+    transition: opacity 0.8s ease-out;
+    -webkit-transition: opacity 1s ease-out;
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+.things span.active {
+    opacity: 1;
+    height: auto;
+}
+
+.toolbar {
+    background: black;
+}
+
+#teaser {
+    background-color: #222222;
+    color: white !important;
+    padding: 15px 0 5px;
+}
+
+#teaser p {
+    margin-bottom: 5px;
+}
+
+#teaser .button {
+}
+
+#howitworks {
+    background: url('../img/program-bg.png') no-repeat center center;
+    background-size: cover;
+    color: white !important;
+    padding: 10px 0;
+}
+
+#howitworks p {
+    font-size: larger;
+}
+
+#suggest {
+    background: green;
+    color: white !important;
+    padding: 10px 0;
+}
+
+#luz {
+    background: url('../img/program2-bg.png') no-repeat center center;
+    background-size: cover;
+    color: white !important;
+    padding: 10px 0;
+}
+
+#techs {
+}
+
+#techs .box {
+    background: none;
+}
+
+#techs .box li {
+}
+
+#about {
+    background: #ffffff;
+}
+
+#about p, #about h1, #about h2 {
+    color: black;
+}
+
+#about .logos {
+}
+
+#about .logos .hackita {
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    border: 3px solid #333;
+    margin-left: -10px;
+    margin-right: -10px;
+    padding: 5px 10px;
+    max-width: 200px;
+}
+
+@media (max-width: 767px) {
+
+    #about .logos {
+        float: left;
+        max-width: 200px;
+    }
+}
+
+@media (min-width: 768px) {
+    #about .logos {
+    }
+
+    #about .logos img {
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    #about .logos .hackita {
+        font-size: 24px;
+    }
+
+}
+
+@media (min-width: 1024px) {
+    #about .logos .hackita {
+        font-size: 32px;
+    }
+
+}
+
+.team-member {
+    position: relative;
+    display: block;
+}
+
+.team-member i {
+    position: absolute;
+    right: 8px;
+    bottom: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 1px 3px;
+    border-radius: 4px;
+}
+
+.box {
+    background: rgba(255, 255, 255, 0.8);
+    color: black;
+    padding: 0 15px;
+}
+
+.box h2 {
+    color: black;
+    margin-bottom: 0;
+}
+
+.box ul {
+    padding: 0 20px;
+}
+
+.box li {
+    margin: 0;
+    padding: 0 0 3px;
+}
+
+#howitworks .box ul {
+    padding: 0 5px;
+}
+
+#howitworks .box li {
+    padding: 0.6em 0;
+}
+
+#howitworks .box li:last-child {
+}
+
+#howitworks .box li b {
+    font-size: 1.2em;
+}
+
+#luz .tech .techs li {
+    text-align: center;
+}
+
+#mentors {
+    background: #222222;
+    color: white !important;
+    padding: 10px 0;
+}
+
+.circular {
+    width: 200px;
+    height: 200px;
+    border-radius: 200px;
+    -webkit-border-radius: 200px;
+    -moz-border-radius: 200px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+    -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+    -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+    margin: 0 auto;
+}
+
+#sponsors {
+    padding: 20px;
+    color: black;
+    border-bottom: #f7f7f7 15px solid;
+}
+
+.inspired {
+    font-size: larger;
+    padding-top: 5px;
+}
+
+.hasadna-block {
+    max-width: 350px;
+    text-align: center;
+    margin: 0 auto 15px;
+}
+
+.b4hasadna, .hasadna {
+    font-size: 19px;
+    line-height: 1.4em;
+}
+
+.b4hasadna {
+    color: #444;
+    padding-right: 0;
+    vertical-align: middle;
+}
+
+.hasadna-block img {
+    width: 160px;
+    height: 80px;
+}
+
+@media (min-width: 992px) {
+    .b4hasadna, .hasadna {
+        font-size: 26px;
+        line-height: 1.4em;
+    }
+
+    .hasadna-block img {
+        width: 160px;
+        height: 80px;
+    }
+
+    /*.inspired {*/
+    /*padding-top: 15px;*/
+    /*}*/
+}
+
+#sponsors .x {
+    background: white;
+    border: 1px solid #eee;
+    padding: 5px;
+}
+
+#sponsors .nli {
+    padding-top: 5px;
+}
+
+#sponsors .nli img {
+}
+
+#sponsors .sponsor {
+    text-align: center;
+}
+
+#faq {
+    color: black;
+    padding: 10px 0;
+}
+
+#faq h2, #sponsors h2 {
+    color: black;
+}
+
+#faq dl {
+    font-size: medium;
+    text-align: justify;
+}
+
+#faq dd {
+    margin-bottom: 30px;
+}
+
+.htmlcontent {
+
+}
+
+.htmlcontent p {
+    margin-bottom: 0.25em;
+}
+
+.htmlcontent ul {
+    padding: 0 1.5em;
+}
+
+.panel.problem {
+    border-style: solid;
+    border-width: 1px;
+    border-color: #c60f13;
+    margin-bottom: 1.25em;
+    padding: 1.25em;
+    background: #d59392;
+    -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+}
+
+#blog_list {
+    color: black;
+    padding: 10px 0;
+}
+
+.blog h2 {
+    color: black;
+}
+
+.small-block-grid-5 li {
+    float: right;
+    width: 20%;
+    list-style: none;
+}
+
+.small-block-grid-5 li img {
+    width: 100%;
+}
+
+.login-buttons .btn {
+    white-space: normal;
+}
+
+#registration-btn {
+    margin-right: 4px;
+}
+
+#mentors-details {
+    margin-bottom: 20px;
+}
+
+.form-group.required .control-label:after {
+    content: "*";
+    color: #580000;
+}

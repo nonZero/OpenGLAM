@@ -1,0 +1,53 @@
+{% extends 'users/base.html' %}
+{% load i18n humanize hackita bootstrap3 %}
+
+{% block content %}
+
+    <ol class="breadcrumb">
+        <li>
+            <a href="{% url "projects:list" %}">
+                {% trans "Projects" %}
+            </a>
+        </li>
+    </ol>
+
+    <div class="panel panel-primary">
+
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                {% if project %}
+                    {% trans "Update Project" %}
+                {% else %}
+                    {% trans "Create Project" %}
+                {% endif %}
+            </h3>
+        </div>
+
+        <div class="panel-body">
+            <form method="post">
+                {% csrf_token %}
+                {% bootstrap_form form %}
+                <button class="btn btn-primary">
+                    {% if project %}
+                        {% trans "Save" %}
+                    {% else %}
+                        {% trans "Create" %}
+                    {% endif %}
+                </button>
+            </form>
+        </div>
+
+    </div>
+    <div class="panel panel-default">
+
+        <div class="panel-body">
+            {% if project %}
+                {{ object.content_html|safe }}
+            {% endif %}
+        </div>
+
+    </div>
+
+
+
+{% endblock %}

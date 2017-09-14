@@ -1,0 +1,387 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-09-14 00:21+0300\n"
+"PO-Revision-Date: 2017-09-14 00:21+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: he\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.0.3\n"
+"X-Poedit-Bookmarks: -1,-1,-1,-1,60,-1,-1,-1,-1,-1\n"
+
+msgid "email"
+msgstr "דואל"
+
+msgid "The two password fields didn't match."
+msgstr "שדות הסיסמא אינם תואמים"
+
+msgid "password"
+msgstr "סיסמא"
+
+msgid "Minimum 6 characters"
+msgstr "לפחות 6 תווים"
+
+msgid "password confirmation"
+msgstr "סיסמא (פעם שניה)"
+
+msgid "send to user by email"
+msgstr "שלח אימייל למשתמש עם פרטי ההערה"
+
+msgid "tags"
+msgstr "תגים"
+
+msgid "display name (Hebrew)"
+msgstr "שם לתצוגה בעברית"
+
+msgid "display name (English)"
+msgstr "שם לתצוגה באנגלית"
+
+msgid "team member"
+msgstr "חבר צוות"
+
+msgid "community member"
+msgstr "חבר קהילה"
+
+msgid "Hebrew name (as seen by community)"
+msgstr "שם בעברית (כפי שיוצג בפני חברי הקהילה)"
+
+msgid "Email (as seen by other community members)"
+msgstr "דואל (כפי שיוצג בפני חברי הקהילה)"
+
+msgid "can be left empty."
+msgstr "ניתן להשאיר ריק."
+
+msgid "Phone number (as seen by other community members)"
+msgstr "מספר טלפון (כפי שיוצג בפני חברי הקהילה)"
+
+msgid "Personal info (as seen by other community members)"
+msgstr "קצת פרטים על עצמי (כפי שיוצגו בפני חברי הקהילה)"
+
+msgid "Share something about yourself!"
+msgstr "זה המקום לשתף משהו על עצמך - אפשר להוסיף גם לינקים."
+
+msgid "Anonymous User"
+msgstr "משתמש אנונימי"
+
+msgid "first name (Hebrew)"
+msgstr "שם פרטי בעברית"
+
+msgid "last name (Hebrew)"
+msgstr "שם משפחה בעברית"
+
+msgid "first name (English)"
+msgstr "שם פרטי באנגלית"
+
+msgid "last name (English)"
+msgstr "שם משפחה באנגלית"
+
+msgid "female"
+msgstr "נקבה"
+
+msgid "male"
+msgstr "זכר"
+
+msgid "prefer not to answer"
+msgstr "ברצוני שלא לענות"
+
+msgid "gender"
+msgstr "מגדר"
+
+msgid "we would like to create a diverse group."
+msgstr "הידעת? חשוב לנו לבנות קבוצה מעורבת מגדרית, עם יצוג גבוה לנשים."
+
+msgid "main phone number"
+msgstr "מספר טלפון"
+
+msgid "alternate phone number"
+msgstr "מספר טלפון נוסף"
+
+msgid "city"
+msgstr "עיר / ישוב"
+
+msgid "address"
+msgstr "כתובת"
+
+msgid "street and number"
+msgstr "רחוב ומספר"
+
+msgid "pesronal info"
+msgstr "פרטים אישיים"
+
+msgid "pesronal infos"
+msgstr "פרטים אישיים"
+
+msgid "Your OGLAM Login Link"
+msgstr "קישור הכניסה שלך לאתר OpenGLAM"
+
+msgid "To login to OGLAM, click here"
+msgstr "על מנת להכנס לאתר תרבות פתוחה, יש ללחוץ כאן"
+
+msgctxt "userlog"
+msgid "Other"
+msgstr "אחר"
+
+msgctxt "userlog"
+msgid "Add"
+msgstr "הוספה"
+
+msgctxt "userlog"
+msgid "Change"
+msgstr "שינוי"
+
+msgctxt "userlog"
+msgid "Remove"
+msgstr "הסרה"
+
+msgid "visible to user"
+msgstr "נראה למשתמש"
+
+msgid "content"
+msgstr "תוכן"
+
+msgid "open"
+msgstr "פתוח (לטיפול)"
+
+msgid "closed at"
+msgstr "מועד סגירה"
+
+msgid "user note"
+msgstr "הערות עבור המשתמש"
+
+msgid "user notes"
+msgstr "הערות עבור המשתמש"
+
+msgid "User note posted to"
+msgstr "הערת משתמש נכתבה על"
+
+msgid "By"
+msgstr "על ידי"
+
+msgid "red"
+msgstr "אדום"
+
+msgid "gray"
+msgstr "אפור"
+
+msgid "bronze"
+msgstr "ברונזה"
+
+msgid "silver"
+msgstr "כסף"
+
+msgid "gold"
+msgstr "זהב"
+
+msgid "name"
+msgstr "שם"
+
+msgid "group"
+msgstr "קבוצה"
+
+msgid "tag"
+msgstr "תג"
+
+msgid "Open"
+msgstr "פתוחה"
+
+msgid "Closed by"
+msgstr "נסגר על ידי"
+
+msgid "Close"
+msgstr "סגירה"
+
+msgid "Private"
+msgstr "פרטי"
+
+msgid "Edit Tags"
+msgstr "עריכת תגים"
+
+msgid "Sign Out"
+msgstr "יציאה"
+
+msgid "Set password"
+msgstr "קביעת סיסמא"
+
+msgid "My Community Profile"
+msgstr "פרופיל הקהילה שלי"
+
+msgid "My Profile"
+msgstr "הפרופיל שלי"
+
+msgid "You are logged in as"
+msgstr "את/ה מחובר/ת למערכת כ-"
+
+msgid "Admin"
+msgstr "אדמין"
+
+msgid "Applications"
+msgstr "מועמדים"
+
+msgid "Events"
+msgstr "אירועים"
+
+msgid "Surveys"
+msgstr "סקרים"
+
+msgid "Users Notes"
+msgstr "הערות משתמשים"
+
+msgid "All"
+msgstr "הכל"
+
+msgid "Project Comments"
+msgstr "הערות לפרויקטים"
+
+msgid "Community"
+msgstr "קהילה"
+
+msgid "Quick passwordless login/registration"
+msgstr "כניסה/הרשמה מהירה ללא סיסמא"
+
+msgid "Using gmail based emails"
+msgstr "כניסה מהירה לבעלי דואל מבוסס gmail"
+
+msgid "Using other email providers"
+msgstr "כניסה/הרשמה לבעלי שירות דואל אחר"
+
+msgid "Forgot your password?"
+msgstr "שכחת את הסיסמא שלך?"
+
+msgid "Password Login"
+msgstr "כניסה באמצעות סיסמא"
+
+msgid "Login"
+msgstr "כניסה"
+
+msgid "Personal Details"
+msgstr "פרטים אישיים"
+
+msgid "Send"
+msgstr "שלח"
+
+msgid "Save"
+msgstr "שמירה"
+
+msgid "Set Password"
+msgstr "קביעת סיסמא"
+
+msgid "Email Registration / Login"
+msgstr "כניסה / הרשמה מהירה ללא סיסמא"
+
+msgid "Send me a quick login link"
+msgstr "שלח לי קישור לכניסה מהירה ללא סיסמא"
+
+msgid "Change profile picture"
+msgstr "שינוי תמונת פרופיל"
+
+msgid "Users"
+msgstr "משתמשים"
+
+msgid "Application Reviews"
+msgstr "הערכות"
+
+msgid "Review"
+msgstr "הערכה"
+
+msgid "User Notes"
+msgstr "הערות עבור המשתמש"
+
+msgid "Add Note"
+msgstr "הוספת הערה"
+
+msgid "Add"
+msgstr "הוספה"
+
+msgid "Saved sucessfully."
+msgstr "נשמר בהצלחה."
+
+msgid "Project Votes"
+msgstr "הצבעות לפרויקט"
+
+msgid "hidden from user"
+msgstr "נסתר מהמשתמש"
+
+msgid "sent to user"
+msgstr "נשלח למשתמש באימייל"
+
+msgid "wrote"
+msgstr "כתב/ה"
+
+msgid "To respond click here"
+msgstr "לכתיבת תגובה או הערה נוספת יש ללחוץ כאן"
+
+msgid "of"
+msgstr "מתוך"
+
+msgid "Validation email sent"
+msgstr "נשלחה אליך הודעה עם קישור לכניסה מהירה לאתר."
+
+msgid "Validation mail sent to"
+msgstr "ההודעה נשלחה אל"
+
+msgid "Please check your email."
+msgstr "אנא בדוק את תיבת הדואר שלך."
+
+msgid "Mail was sent from"
+msgstr "ההודעה נשלחה מהכתובת"
+
+msgid "Signup"
+msgstr "הרשמה"
+
+msgid "Validation Sent"
+msgstr "האישור נשלח"
+
+msgid "validation code too old. Please generate a new code"
+msgstr "הקישור ישן מדי - אנא צור/צרי קישור כניסה חדש דרך מסך ההרשמה."
+
+msgid "Invalid validation code."
+msgstr "קוד הכניסה שגוי."
+
+msgid "Inactive user."
+msgstr "חשבון זה אינו פעיל."
+
+msgid "Welcome back!"
+msgstr "שלום שוב!"
+
+msgid "Welcome! You can set your password any time from the menu above."
+msgstr "שלום! ניתן לקבוע סיסמא דרך הקישור בתפריט העליון."
+
+msgid "Password was set succesfully"
+msgstr "הסיסמא נקבעה בהצלחה."
+
+msgid "Profile saved successfully."
+msgstr "הפרופיל נשמר בהצלחה."
+
+msgid "OpenGLAM: New note from"
+msgstr "הכיתה02: קיבלת הערה חדשה מאת"
+
+msgid "Open Users Notes"
+msgstr "הערות משתמשים פתוחות"
+
+#~ msgid "Password"
+#~ msgstr "סיסמא"
+
+#~ msgid "skype username"
+#~ msgstr "שם משתמש ב-skype"
+
+#~ msgid "optional, for conducting a video interview."
+#~ msgstr "אופציונלי, לשם קיום ראיון בשיחת וידאו"
+
+#~ msgid "Application"
+#~ msgstr "מועמדות"
+
+#~ msgid "Notes"
+#~ msgstr "הערות"
+
+#~ msgid "Email"
+#~ msgstr "דואל"

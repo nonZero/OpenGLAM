@@ -1,0 +1,17 @@
+{% load i18n humanize hackita staticfiles %}
+<div dir="rtl">
+    <h1>
+        {% trans "Bid for" %}
+        <a href="
+
+                {{ base_url }}{{ user.get_absolute_url }}">{{ user.community_name }}</a>
+    </h1>
+
+    <ul>
+        {% for p, v in bid %}
+            <li>
+                {{ p }}: {{ v }}
+            </li>
+        {% endfor %}
+    </ul>
+</div>
