@@ -7,7 +7,7 @@ DEFAULT_FROM_EMAIL = FROM_EMAIL
 EMAIL_SUBJECT_PREFIX = '[%s] ' % _user.upper()
 
 ADMINS = (
-    ('{{user}}', '{{user}}@localhost'),
+    ('Udi', 'udioron@gmail.com'),
 )
 
 MANAGERS = ADMINS
@@ -24,8 +24,6 @@ DATABASES = {
         'PORT': '',
     },
 }
-
-GDRIVE_API_KEY = ''
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = ''
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = ''

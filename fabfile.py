@@ -9,7 +9,7 @@ from fab_tools import dev
 assert dev
 
 AUTO_DIR = os.path.abspath(os.path.dirname(__file__))
-CONF_DIR = os.path.abspath(os.path.join(AUTO_DIR, 'conf'))
+CONF_DIR = os.path.abspath(os.path.join(AUTO_DIR, '../oglam/conf'))
 
 env.project = "oglam"
 env.user = "oglam"
@@ -27,10 +27,17 @@ env.backup_dir = '/home/%s/backups' % env.user
 @task
 def prod():
     env.instance = 'prod'
-    env.vhost = 'oglam.hasadna.org.il'
+    env.vhost = 'oglam.10x.org.il'
     env.hosts = [env.vhost]
     env.redirect_host = 'www.%s' % env.vhost
 
+# @task
+# def prod():
+#     env.instance = 'prod'
+#     env.vhost = 'oglam.hasadna.org.il'
+#     env.hosts = [env.vhost]
+#     env.redirect_host = 'www.%s' % env.vhost
+#
 
 @task
 def initial_project_setup():

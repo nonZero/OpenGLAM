@@ -1,14 +1,25 @@
+from io import StringIO
+
 from fabric.api import *
 from fabric import operations
 from fabric.contrib.files import upload_template, uncomment
 
 APT_PACKAGES = [
-    'postgresql',
-    'nginx',
+    'unattended-upgrades',
+    'ntp',
+    'fail2ban',
+
+    'postfix',
+
     'supervisor',
+
+    'nginx',
+
+    'git',
     'python',
     'virtualenvwrapper',
-    'git',
+
+    'postgresql',
     'python-dev',
     'libpq-dev',
     'libjpeg-dev',
@@ -16,19 +27,34 @@ APT_PACKAGES = [
     'zlib1g-dev',
     'libfreetype6',
     'libfreetype6-dev',
-    'postfix',
-    'fail2ban',
-    'postgis',
-    'postgresql-9.3-postgis-2.1',
+
     'htop',
+
+    'rabbitmq-server',  # for offline tasks via celery
 ]
+
+AUTO_RENEW_SCRIPT = '/home/certbot/auto-renew.sh'
+
+
+@task
+def install_new_python():
+    sudo("sudo add-apt-repository ppa:jonathonf/python-3.6")
+    sudo("apt-get -qq update -y", pty=False)
+    sudo("apt-get install -y python3.6 python3.6-dev", pty=False)
+    run("which python3.6")
+    run("python3.6 --version")
+
+
+@task
+def install_server_pkgs():
+    run("sudo apt-get update")
+    run("sudo apt-get upgrade -y")
+    run("sudo apt-get install -y %s" % " ".join(APT_PACKAGES))
 
 
 @task
 def server_setup():
-    run("sudo apt-get update")
-    run("sudo apt-get upgrade -y")
-    run("sudo apt-get install -y %s" % " ".join(APT_PACKAGES))
+    install_server_pkgs()
 
 
 @task
@@ -59,15 +85,6 @@ def create_webuser_and_db():
     run("sudo -iu postgres createdb %s -O %s" % (env.webuser, env.webuser))
     run("sudo -iu postgres psql -c \"alter user %s with password '%s';\"" % (
         env.webuser, env.webuser))
-    enable_postgis()
-
-
-@task
-def enable_postgis():
-    run(
-        "sudo -iu postgres psql %s -c \"CREATE EXTENSION postgis;\"" % env.webuser)
-    run(
-        "sudo -iu postgres psql %s -c \"CREATE EXTENSION postgis_topology;\"" % env.webuser)
 
 
 @task
@@ -89,7 +106,7 @@ def nginx_setup():
               'server_names_hash_bucket_size\s+64',
               use_sudo=True)
 
-    run('sudo rm -f /etc/nginx/sites-enabled/default')
+    # run('sudo rm -f /etc/nginx/sites-enabled/default')
 
     run('sudo ln -fs %sconf/nginx.conf %s' % (env.code_dir, nginx_conf1))
     run('sudo ln -fs %s %s' % (nginx_conf1, nginx_conf2))
@@ -107,7 +124,7 @@ def gunicorn_setup():
                             'venv': env.venv_dir,
                             'port': env.gunicorn_port,
                             'pidfile': env.pidfile,
-                        }, mode=0777, use_jinja=True)
+                        }, mode=0o777, use_jinja=True)
 
 
 @task
@@ -119,7 +136,7 @@ def supervisor_setup():
                             'dir': env.code_dir,
                             'webuser': env.webuser,
                             'logdir': env.log_dir,
-                        }, mode=0777, use_jinja=True)
+                        }, mode=0o777, use_jinja=True)
 
         run(
             'sudo ln -fs %sconf/supervisor.conf /etc/supervisor/conf.d/%s.conf'
@@ -143,3 +160,112 @@ def project_mkdirs():
 @task
 def status():
     run("sudo supervisorctl status")
+
+
+@task
+def le_create_user():
+    run("sudo adduser le --gecos '' --disabled-password")
+    print("Now add the following using visudo:")
+    print("le ALL=(ALL) NOPASSWD: ALL")
+
+
+@task
+def le_create_scripts():
+    put(StringIO(
+        '''
+#!/bin/bash
+cd ~/letsencrypt/
+sudo service nginx stop
+./letsencrypt-auto certonly --standalone -d oglam.10x.org.il
+sudo service nginx start
+
+'''.strip()), "/home/le/renew.sh", use_sudo=True)
+
+    put(StringIO(
+        '''
+#!/bin/bash
+cd ~/letsencrypt/
+./letsencrypt-auto certonly -a webroot --agree-tos --renew-by-default --webroot-path=/home/le/webroot -d oglam.10x.org.il
+sudo service nginx reload
+
+'''.strip()), "/home/le/auto-renew.sh", use_sudo=True)
+
+    sudo("chown le:le /home/le/renew.sh /home/le/auto-renew.sh")
+    sudo("chmod +x /home/le/renew.sh /home/le/auto-renew.sh")
+
+
+@task
+def le_initial_setup():
+    run("sudo -iu le git clone https://github.com/letsencrypt/letsencrypt")
+    run("sudo -iu le -- bash -c 'cd letsencrypt && ./letsencrypt-auto --help'")
+
+
+# @task
+# def le_renew():
+#     run("sudo -iu le -- bash -c './renew.sh'")
+#
+#
+# @task
+# def le_auto_renew():
+#     run("sudo -iu le -- mkdir -p /home/le/webroot")
+#     run("sudo -iu le -- bash -c './auto-renew.sh'")
+#
+#
+
+@task
+def install_certbot():
+    # FIRST use nginx_setup (unsecure)
+    # THEN run this
+    # THEN nginx_setup:secure=1
+    #
+    # For "Cannot add PPA. Please check that the PPA name or format is correct" error, use:
+    # sudo("apt-get install -q --reinstall ca-certificates")
+    # Source: https://askubuntu.com/questions/429803/cannot-add-ppa-please-check-that-the-ppa-name-or-format-is-correct
+
+    sudo("add-apt-repository ppa:certbot/certbot")
+    sudo("apt-get -qq update", pty=False)
+    sudo("apt-get install -q -y certbot", pty=False)
+
+    sudo("adduser certbot --gecos '' --disabled-password")
+    upload_template('conf/certbot.ini.template', '/home/certbot/certbot.ini', {
+        'host': env.vhost,
+    }, use_sudo=True, use_jinja=True, )
+    put(StringIO("""#!/bin/bash\ncertbot certonly -c certbot.ini"""),
+        AUTO_RENEW_SCRIPT,
+        use_sudo=True, mode=0o775)
+    for s in ['webroot', 'conf', 'work', 'logs']:
+        sudo('mkdir -p /home/certbot/{}/'.format(s), user='certbot')
+    renew_cert()
+    backup_cert()
+
+
+@task
+def backup_cert():
+    get("/home/certbot/conf/", "%(host)s/certbot/%(path)s", use_sudo=True)
+
+    # IMPORTANT NOTES:
+    #  - Your account credentials have been saved in your Certbot
+    #    configuration directory at /home/certbot/conf. You should make a
+    #    secure backup of this folder now. This configuration directory will
+    #    also contain certificates and private keys obtained by Certbot so
+    #    making regular backups of this folder is ideal.
+
+
+@task
+def renew_cert():
+    with cd("/home/certbot/"):
+        sudo(AUTO_RENEW_SCRIPT, user='certbot')
+    sudo("service nginx reload")
+
+
+CERTBOT_CRON = """
+MAILTO=udioron@gmail.com
+0 0 1 FEB,APR,JUN,AUG,OCT,DEC * {}
+""".strip()
+
+
+@task
+def setup_certbot_crontab():
+    s = CERTBOT_CRON.format(AUTO_RENEW_SCRIPT)
+    put(StringIO(s), '/tmp/crontab')
+    run('sudo -iu certbot crontab < /tmp/crontab')

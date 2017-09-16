@@ -4,8 +4,7 @@ from fabric import operations
 from fabric.api import *
 
 
-@task
-def backup_db():
+def make_backup():
     now = datetime.datetime.now()
     filename = now.strftime(
         "{}-{}-%Y-%m-%d-%H-%M.sql.gz".format(env.project, env.instance))
@@ -13,4 +12,16 @@ def backup_db():
     fullpath = env.backup_dir + '/' + filename
     run('sudo -u postgres pg_dump {} | gzip > {}'.format(env.webuser,
                                                          fullpath))
-    operations.get(fullpath)
+    return fullpath
+
+
+@task
+def remote_backup_db():
+    path = make_backup()
+    operations.get(path)
+    run('ls -alh {}'.format(path))
+
+
+@task
+def backup_db():
+    operations.get(make_backup())

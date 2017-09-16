@@ -19,6 +19,12 @@ def virtualenv(path):
 
 
 @task
+def upgrade_pip():
+    with virtualenv(env.code_dir):
+        run("pip install --upgrade pip")
+
+
+@task
 def git_log():
     with virtualenv(env.code_dir):
         run("git log -n 1")
@@ -36,17 +42,23 @@ def reload_app():
 
 
 @task
-def deploy(restart=True):
+def deploy(restart=True, quick=False):
     with virtualenv(env.code_dir):
         run("git pull")
-        run("pip install -r requirements.txt")
-        run("python manage.py migrate --noinput")
-        run("python manage.py update_permissions")
+        if not quick:
+            run("pip install -r requirements.txt -q")
+            run("python manage.py migrate --noinput")
+            run("python manage.py update_permissions")
         run("python manage.py collectstatic --noinput")
         run("git log -n 1 --format=\"%ai %h\" > collected-static/version.txt")
         run("git log -n 1 > collected-static/version-full.txt")
     if restart:
         reload_app()
+
+
+@task
+def quickdeploy():
+    deploy(True, True)
 
 
 @task
@@ -56,7 +68,8 @@ def clone_project():
 
 @task
 def create_venv():
-    run("virtualenv {} --prompt='({}) '".format(env.venv_dir, env.user))
+    run("virtualenv -p python3.6 {} --prompt='({}) '".format(env.venv_dir, env.user))
+    upgrade_pip()
 
 
 @task
@@ -98,5 +111,3 @@ def del_pyc():
 def m(params):
     with virtualenv(env.code_dir):
         run("python manage.py {}".format(params))
-
-

@@ -14,11 +14,13 @@ def load_db_from_file(filename):
         abort("Aborted.")
 
     drop_command = "drop schema public cascade; create schema public;"
-    local('''python -c "print '{}'" | python manage.py dbshell'''.format(
-        drop_command, filename))
+    cmd = '''python -c "print('{}')" | python manage.py dbshell'''.format(
+        drop_command, filename)
+    local(cmd)
 
     cmd = "gunzip -c" if filename.endswith('.gz') else "cat"
-    local('{} {} | python manage.py dbshell'.format(cmd, filename))
+    cmd = '{} {} | python manage.py dbshell'.format(cmd, filename)
+    local(cmd)
 
 
 @task
@@ -29,5 +31,3 @@ def create_db_user():
 @task
 def create_db():
     local("createdb -O {0} {0}".format(env.db))
-    # sql = "CREATE EXTENSION postgis; CREATE EXTENSION postgis_topology;"
-    # local('psql -c "{}" {}'.format(sql, env.db))
