@@ -1,8 +1,7 @@
 from io import StringIO
 
 from fabric.api import *
-from fabric import operations
-from fabric.contrib.files import upload_template, uncomment
+from fabric.contrib.files import upload_template, uncomment, append, comment
 
 APT_PACKAGES = [
     'unattended-upgrades',
@@ -10,6 +9,8 @@ APT_PACKAGES = [
     'fail2ban',
 
     'postfix',
+    'opendkim',
+    'opendkim-tools',
 
     'supervisor',
 
@@ -77,6 +78,7 @@ def server_setup():
     create_keys()
     show_pubkey()
     print("Do not forget to add a github deploy key!")
+
 
 
 @task
@@ -257,7 +259,6 @@ def install_certbot():
     backup_cert()
 
 
-
 @task
 def backup_cert():
     get("/home/certbot/conf/", "%(host)s/certbot/%(path)s", use_sudo=True)
@@ -287,8 +288,6 @@ def renew_cert():
     sudo("service nginx reload")
 
 
-
-
 CERTBOT_CRON = """
 MAILTO=udioron@gmail.com
 0 0 1 FEB,APR,JUN,AUG,OCT,DEC * {}
@@ -300,3 +299,66 @@ def setup_certbot_crontab():
     s = CERTBOT_CRON.format(AUTO_RENEW_SCRIPT)
     put(StringIO(s), '/tmp/crontab')
     run('sudo -iu certbot crontab < /tmp/crontab')
+
+
+def _setup_opendkim(host):
+    """Setup opendkim and approve host.
+    See https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-dkim-with-postfix-on-debian-wheezy
+    """
+    with open("conf/opendkim.conf") as f:
+        lines = f.read().splitlines()
+    append("/etc/opendkim.conf", lines, use_sudo=True)
+
+    append("/etc/default/opendkim", 'SOCKET="inet:12301@localhost"',
+           use_sudo=True)
+
+    lines = [
+        "milter_protocol = 2",
+        "milter_default_action = accept",
+        "smtpd_milters = inet:localhost:12301",
+        "non_smtpd_milters = inet:localhost:12301",
+    ]
+    append("/etc/postfix/main.cf", lines, use_sudo=True)
+
+    sudo("mkdir -pv /etc/opendkim/keys")
+
+    lines = [
+        "127.0.0.1",
+        "localhost",
+        host,
+    ]
+    append("/etc/opendkim/TrustedHosts", lines, use_sudo=True)
+
+    s = "mail._domainkey.{0} {0}:mail:/etc/opendkim/keys/{0}/mail.private".format(
+        host)
+    append("/etc/opendkim/KeyTable", s, use_sudo=True)
+
+    s = "*@{0} mail._domainkey.{0}".format(host)
+    append("/etc/opendkim/SigningTable", s, use_sudo=True)
+
+    d = "/etc/opendkim/keys/{}".format(host)
+    sudo('mkdir -pv {}'.format(d))
+    with cd(d):
+        sudo("opendkim-genkey -s mail -d {}".format(host))
+        sudo("chown opendkim:opendkim mail.private")
+        s = sudo("cat mail.txt", )
+
+    sudo("service postfix restart")
+    sudo("service opendkim restart")
+
+    print(s)
+
+
+@task
+def setup_opendkim():
+    _setup_opendkim(env.vhost)
+
+
+@task
+def setup_postfix():
+    comment("/etc/postfix/main.cf", "^smtpd_use_tls=yes$", use_sudo=True)
+    append("/etc/postfix/main.cf", [
+        "smtp_tls_security_level=may",
+        "smtpd_tls_security_level=may",
+    ], use_sudo=True)
+    sudo("service postfix restart")
