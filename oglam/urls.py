@@ -1,5 +1,6 @@
 from django.conf.urls import include, url
 from django.contrib import admin
+from django.views.defaults import page_not_found
 from django.views.generic.base import RedirectView
 
 from website import views
@@ -23,7 +24,10 @@ urlpatterns = [
     i("surveys"),
     i("events"),
 
+
     url('^social/', include('social_django.urls', namespace='social')),
 
     url(r'^hadmin/', include(admin.site.urls)),
+
+    url(r'^404/$', lambda r: page_not_found(r, ValueError("Testing 123"))),
 ]

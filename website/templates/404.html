@@ -1,0 +1,14 @@
+{% extends 'users/base.html' %}
+{% load i18n hackita humanize staticfiles bootstrap3 %}
+
+{% block content %}
+
+    <div class="panel panel-danger">
+        <div class="panel-heading">
+            <h1 class="panel-title text-center">
+                {% trans "404 Not Found" %}
+            </h1>
+        </div>
+    </div>
+
+{% endblock %}

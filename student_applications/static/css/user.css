@@ -45,7 +45,6 @@ body.dragging, body.dragging * {
 }
 .user-container {
     margin-top: 20px;
-    border-bottom: 5px solid #f7f7f7;
 }
 
 .user-content {
