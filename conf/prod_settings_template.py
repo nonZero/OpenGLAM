@@ -1,7 +1,10 @@
 _user = '{{webuser}}'
 _host = '{{host}}'
 
-ALLOWED_HOSTS = [_host]
+ALLOWED_HOSTS = [
+    _host,
+    'register.oglam.hasadna.org.il',
+]
 FROM_EMAIL = "OGLAM <noreply@%s>   " % _host
 DEFAULT_FROM_EMAIL = FROM_EMAIL
 EMAIL_SUBJECT_PREFIX = '[%s] ' % _user.upper()

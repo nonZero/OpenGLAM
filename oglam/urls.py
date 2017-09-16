@@ -23,8 +23,7 @@ urlpatterns = [
     i("surveys"),
     i("events"),
 
-    url('^social/',
-        include('social.apps.django_app.urls', namespace='social')),
+    url('^social/', include('social_django.urls', namespace='social')),
 
     url(r'^hadmin/', include(admin.site.urls)),
 ]

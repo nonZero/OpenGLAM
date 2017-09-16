@@ -20,6 +20,8 @@ APT_PACKAGES = [
     'virtualenvwrapper',
 
     'postgresql',
+
+    'build-essential',
     'python-dev',
     'libpq-dev',
     'libjpeg-dev',
@@ -27,6 +29,7 @@ APT_PACKAGES = [
     'zlib1g-dev',
     'libfreetype6',
     'libfreetype6-dev',
+    'libgmp3-dev',
 
     'htop',
 
@@ -34,6 +37,17 @@ APT_PACKAGES = [
 ]
 
 AUTO_RENEW_SCRIPT = '/home/certbot/auto-renew.sh'
+
+
+@task
+def apt_upgrade():
+    run("sudo apt-get update")
+    run("sudo apt-get upgrade -y")
+
+
+@task
+def apt_install():
+    run("sudo apt-get install -y -q %s" % " ".join(APT_PACKAGES))
 
 
 @task
@@ -46,15 +60,23 @@ def install_new_python():
 
 
 @task
-def install_server_pkgs():
-    run("sudo apt-get update")
-    run("sudo apt-get upgrade -y")
-    run("sudo apt-get install -y %s" % " ".join(APT_PACKAGES))
+def create_keys():
+    run('ssh-keygen')
+
+
+@task
+def show_pubkey():
+    run('cat .ssh/id_rsa.pub')
 
 
 @task
 def server_setup():
-    install_server_pkgs()
+    apt_upgrade()
+    fa()
+    install_new_python()
+    create_keys()
+    show_pubkey()
+    print("Do not forget to add a github deploy key!")
 
 
 @task

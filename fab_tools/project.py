@@ -21,7 +21,7 @@ def virtualenv(path):
 @task
 def upgrade_pip():
     with virtualenv(env.code_dir):
-        run("pip install --upgrade pip")
+        run("pip install --upgrade pip pipenv")
 
 
 @task
@@ -46,7 +46,7 @@ def deploy(restart=True, quick=False):
     with virtualenv(env.code_dir):
         run("git pull")
         if not quick:
-            run("pip install -r requirements.txt -q")
+            run("pipenv install")
             run("python manage.py migrate --noinput")
             run("python manage.py update_permissions")
         run("python manage.py collectstatic --noinput")

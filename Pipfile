@@ -1,0 +1,17 @@
+[packages]
+ipython = "*"
+pytz = "*"
+bleach = "*"
+markdown = "*"
+Pillow = "*"
+psycopg2 = "*"
+Django = "*"
+django-authtools = "*"
+django-braces = "*"
+django-extensions = "*"
+social-auth-core = {extras = ["openidconnect"]}
+social-auth-app-django = "*"
+requests-oauthlib = "*"
+django-bootstrap3 = "*"
+gunicorn = "*"
+setproctitle = "*"
