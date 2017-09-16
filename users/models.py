@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 
 import random
 from authtools.models import AbstractEmailUser
+from django.conf import settings
 from django.contrib.auth.hashers import UNUSABLE_PASSWORD_PREFIX
 from django.contrib.auth.models import BaseUserManager
 from django.contrib.contenttypes.fields import GenericForeignKey
@@ -11,8 +12,6 @@ from django.core.urlresolvers import reverse
 from django.db import models, transaction
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _, pgettext_lazy
-
-from oglam import settings
 
 
 class UserManager(BaseUserManager):
@@ -170,7 +169,7 @@ class Code(models.Model):
         send_mail(
             _('Your OGLAM Login Link'),
             '{}:\n{}'.format(_("To login to OGLAM, click here"), url),
-            settings.EMAIL_FROM, [self.email]
+            settings.DEFAULT_FROM_EMAIL, [self.email]
         )
 
 

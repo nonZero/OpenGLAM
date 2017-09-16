@@ -5,8 +5,8 @@ ALLOWED_HOSTS = [
     _host,
     'register.oglam.hasadna.org.il',
 ]
-FROM_EMAIL = "OGLAM <noreply@%s>   " % _host
-DEFAULT_FROM_EMAIL = FROM_EMAIL
+
+DEFAULT_FROM_EMAIL = "Open GLAM <noreply@%s>" % _host
 EMAIL_SUBJECT_PREFIX = '[%s] ' % _user.upper()
 
 ADMINS = (
@@ -32,3 +32,7 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = ''
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = ''
 
 GOOGLE_ANALYTICS_ID = ''
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_SCHEME', 'https')
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True

@@ -66,7 +66,7 @@ class ValidationSentView(TemplateView):
         if not self.email:
             return redirect("home")
 
-        self.from_email = parseaddr(settings.EMAIL_FROM)[1]
+        self.from_email = parseaddr(settings.DEFAULT_FROM_EMAIL)[1]
         return super().get(request, *args, **kwargs)
 
 

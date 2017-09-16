@@ -52,10 +52,9 @@ def project_setup():
     project_mkdirs()
     create_local_settings()
     deploy(restart=False)
-    # celery_setup()
     gunicorn_setup()
-    # supervisor_setup()
-    # nginx_setup()
+    supervisor_setup()
+    nginx_setup()
 
 
 try:

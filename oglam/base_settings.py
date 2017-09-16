@@ -83,8 +83,6 @@ SOCIAL_AUTH_EMAIL_FORM_HTML = "users/signup.html"
 SOCIAL_AUTH_EMAIL_VALIDATION_FUNCTION = 'oglam.socialauth.send_validation'
 SOCIAL_AUTH_EMAIL_VALIDATION_URL = 'users:validation_sent'
 
-EMAIL_FROM = "OpenGLAM <noreply@oglam.hasadna.org.il>"
-
 # SOCIAL_AUTH_USERNAME_IS_FULL_EMAIL = True
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.google.GoogleOAuth2',

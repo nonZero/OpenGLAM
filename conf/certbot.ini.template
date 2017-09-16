@@ -1,0 +1,13 @@
+# Use a 4096 bit RSA key instead of 2048
+#rsa-key-size = 4096
+non-interactive
+agree-tos
+email = udioron@gmail.com
+
+# authenticator = webroot
+webroot-path = /home/certbot/webroot
+
+domain = {{host}}
+config-dir = /home/certbot/conf/
+work-dir = /home/certbot/work/
+logs-dir = /home/certbot/logs/

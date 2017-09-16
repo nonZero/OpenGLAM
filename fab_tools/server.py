@@ -72,7 +72,7 @@ def show_pubkey():
 @task
 def server_setup():
     apt_upgrade()
-    fa()
+    apt_install()
     install_new_python()
     create_keys()
     show_pubkey()
@@ -128,11 +128,11 @@ def nginx_setup():
               'server_names_hash_bucket_size\s+64',
               use_sudo=True)
 
-    # run('sudo rm -f /etc/nginx/sites-enabled/default')
+    run('sudo rm -f /etc/nginx/sites-enabled/default')
 
     run('sudo ln -fs %sconf/nginx.conf %s' % (env.code_dir, nginx_conf1))
     run('sudo ln -fs %s %s' % (nginx_conf1, nginx_conf2))
-    run('sudo service nginx configtest')
+    run('sudo nginx -t')
     run('sudo service nginx start')
     run('sudo service nginx reload')
 
@@ -236,10 +236,6 @@ def le_initial_setup():
 
 @task
 def install_certbot():
-    # FIRST use nginx_setup (unsecure)
-    # THEN run this
-    # THEN nginx_setup:secure=1
-    #
     # For "Cannot add PPA. Please check that the PPA name or format is correct" error, use:
     # sudo("apt-get install -q --reinstall ca-certificates")
     # Source: https://askubuntu.com/questions/429803/cannot-add-ppa-please-check-that-the-ppa-name-or-format-is-correct
@@ -252,13 +248,14 @@ def install_certbot():
     upload_template('conf/certbot.ini.template', '/home/certbot/certbot.ini', {
         'host': env.vhost,
     }, use_sudo=True, use_jinja=True, )
-    put(StringIO("""#!/bin/bash\ncertbot certonly -c certbot.ini"""),
+    put(StringIO("""#!/bin/bash\ncertbot certonly -c certbot.ini --webroot"""),
         AUTO_RENEW_SCRIPT,
         use_sudo=True, mode=0o775)
     for s in ['webroot', 'conf', 'work', 'logs']:
         sudo('mkdir -p /home/certbot/{}/'.format(s), user='certbot')
-    renew_cert()
+    get_cert()
     backup_cert()
+
 
 
 @task
@@ -274,10 +271,22 @@ def backup_cert():
 
 
 @task
+def get_cert():
+    # sudo("service nginx stop")
+    # with cd("/home/certbot/"):
+    #     sudo("certbot certonly -c certbot.ini --standalone")
+    sudo('chown -vR {} {}'.format("certbot", "/home/certbot/"))
+    sudo("service nginx reload")
+    # sudo("service nginx start")
+
+
+@task
 def renew_cert():
     with cd("/home/certbot/"):
         sudo(AUTO_RENEW_SCRIPT, user='certbot')
     sudo("service nginx reload")
+
+
 
 
 CERTBOT_CRON = """
