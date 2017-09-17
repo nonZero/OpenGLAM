@@ -134,8 +134,8 @@ def nginx_setup():
 
     run('sudo ln -fs %sconf/nginx.conf %s' % (env.code_dir, nginx_conf1))
     run('sudo ln -fs %s %s' % (nginx_conf1, nginx_conf2))
+
     run('sudo nginx -t')
-    run('sudo service nginx start')
     run('sudo service nginx reload')
 
 

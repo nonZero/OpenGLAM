@@ -44,7 +44,7 @@ def reload_app():
 @task
 def deploy(restart=True, quick=False):
     with virtualenv(env.code_dir):
-        run("git pull")
+        run("git pull", pty=False)
         if not quick:
             run("pipenv install", pty=False)
             run("python manage.py migrate --noinput")

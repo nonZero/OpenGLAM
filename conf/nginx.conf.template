@@ -5,8 +5,13 @@ ssl_session_timeout 10m;
 ssl_certificate    /home/certbot/conf/live/oglam.10x.org.il/fullchain.pem;
 ssl_certificate_key /home/certbot/conf/live/oglam.10x.org.il/privkey.pem;
 
+#server {
+#    listen 80 default_server;
+#    return 404;
+#}
+
 server {
-    listen 80 default_server;
+    listen 443 ssl default_server;
     return 404;
 }
 

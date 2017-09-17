@@ -1,11 +1,12 @@
 import os.path
 
-from fabric.api import *
-from fab_tools.server import *
-from fab_tools.project import *
 from fab_tools import db
+from fab_tools.project import *
+from fab_tools.server import *
+
 assert db
 from fab_tools import dev
+
 assert dev
 
 AUTO_DIR = os.path.abspath(os.path.dirname(__file__))
@@ -31,6 +32,7 @@ def prod():
     env.hosts = [env.vhost]
     env.redirect_host = 'www.%s' % env.vhost
 
+
 # @task
 # def prod():
 #     env.instance = 'prod'
@@ -55,6 +57,12 @@ def project_setup():
     gunicorn_setup()
     supervisor_setup()
     nginx_setup()
+
+
+@task
+def pd():
+    local("git push")
+    deploy()
 
 
 try:
