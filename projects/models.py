@@ -44,6 +44,9 @@ class Project(models.Model):
     def __str__(self):
         return self.title
 
+    def natural_key(self):
+        return (self.slug,)
+
     def save(self, force_insert=False, force_update=False, using=None,
              update_fields=None):
         self.summary_html = markdown.markdown(self.summary_markdown)
