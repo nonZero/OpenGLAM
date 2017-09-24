@@ -3,110 +3,114 @@
 
 {% block content %}
 
-    <h1>
-
-        {% if user.team_member %}
-            <div class="pull-right">
-                <a href="{% url "projects:list_votes" %}">
-                    <i class="fa fa-users"></i>
-                </a>
-            </div>
-        {% endif %}
-
-        {% trans "Projects" %}
-    </h1>
-
-    <ul class="list-group project-list">
-
-        {% for object in published %}
-            <li class="list-group-item{% if object.vote %} list-group-item-warning{% endif %}">
-                <div class="row">
-                    <div class="col-sm-3">
-                        <a href="{{ object.get_absolute_url }}">
-                            {% if object.picture %}
-                                <img class="img-responsive"
-                                     src="{{ object.picture.url }}">
-                            {% else %}
-                                <img class="img-responsive"
-                                     src="{% static "img/glam/icon-library.png" %}"/>
-                            {% endif %}
+    <div class="row">
+        <div class="col-sm-push-2 col-sm-8">
+            <h1>
+                {% if user.team_member %}
+                    <div class="pull-right">
+                        <a href="{% url "projects:list_votes" %}">
+                            <i class="fa fa-users"></i>
                         </a>
                     </div>
-                    <div class="col-sm-9">
-                        {% if object.bid and object.bid.value %}
-                            <div class="pull-right label label-success">{{ object.bid.value }}
-                                <i class="fa fa-money"></i>
+                {% endif %}
+
+                {% trans "Projects" %}
+            </h1>
+
+            <ul class="list-group project-list">
+
+                {% for object in published %}
+                    <li class="list-group-item{% if object.vote %} list-group-item-warning{% endif %}">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <a href="{{ object.get_absolute_url }}">
+                                    {% if object.picture %}
+                                        <img class="img-responsive"
+                                             src="{{ object.picture.url }}">
+                                    {% else %}
+                                        <img class="img-responsive"
+                                             src="{% static "img/glam/icon-library.png" %}"/>
+                                    {% endif %}
+                                </a>
                             </div>
-                        {% endif %}
-                        {% if object.vote %}
-
-                            <div class="label label-{{ object.vote.get_score_label }} pull-right">
-                                {{ object.vote.get_score_display }}
-                            </div>
-                        {% endif %}
-                        <h4 class="list-group-item-heading">
-                            {{ object|u }}
-                        </h4>
-
-                        <p class="list-group-item-text">
-                            {{ object.summary_html|safe | urlizetrunc:50 | linebreaksbr }}
-                        </p>
-
-                    </div>
-                </div>
-            </li>
-        {% endfor %}
-
-    </ul>
-
-    {% if perms.projects.view_project %}
-
-        <ul class="list-group">
-
-            {% for object in object_list.unpublished %}
-                <li class="list-group-item{% if object.vote %} list-group-item-warning{% endif %}">
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <a href="{{ object.get_absolute_url }}">
-                                {% if object.picture %}
-                                    <img class="img-responsive"
-                                         src="{{ object.picture.url }}">
-                                {% else %}
-                                    <img class="img-responsive"
-                                         src="{% static "img/glam/icon-library.png" %}"/>
+                            <div class="col-sm-8">
+                                {% if object.bid and object.bid.value %}
+                                    <div class="pull-right label label-success">{{ object.bid.value }}
+                                        <i class="fa fa-money"></i>
+                                    </div>
                                 {% endif %}
-                            </a>
+                                {% if object.vote %}
+
+                                    <div class="label label-{{ object.vote.get_score_label }} pull-right">
+                                        {{ object.vote.get_score_display }}
+                                    </div>
+                                {% endif %}
+                                <h4 class="list-group-item-heading">
+                                    {{ object|u }}
+                                </h4>
+
+                                <p class="list-group-item-text">
+                                    {{ object.summary_html|safe | urlizetrunc:50 | linebreaksbr }}
+                                </p>
+
+                            </div>
                         </div>
-                        <div class="col-sm-9">
-                            {% if object.bid and object.bid.value %}
-                                <div class="pull-right label label-success">{{ object.bid.value }}
-                                    <i class="fa fa-money"></i>
+                    </li>
+                {% endfor %}
+
+            </ul>
+
+            {% if perms.projects.view_project %}
+
+                <ul class="list-group">
+
+                    {% for object in object_list.unpublished %}
+                        <li class="list-group-item{% if object.vote %} list-group-item-warning{% endif %}">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <a href="{{ object.get_absolute_url }}">
+                                        {% if object.picture %}
+                                            <img class="img-responsive"
+                                                 src="{{ object.picture.url }}">
+                                        {% else %}
+                                            <img class="img-responsive"
+                                                 src="{% static "img/glam/icon-library.png" %}"/>
+                                        {% endif %}
+                                    </a>
                                 </div>
-                            {% endif %}
-                            {% if object.vote %}
+                                <div class="col-sm-8">
+                                    {% if object.bid and object.bid.value %}
+                                        <div class="pull-right label label-success">{{ object.bid.value }}
+                                            <i class="fa fa-money"></i>
+                                        </div>
+                                    {% endif %}
+                                    {% if object.vote %}
 
-                                <div class="label label-{{ object.vote.get_score_label }} pull-right">
-                                    {{ object.vote.get_score_display }}
+                                        <div class="label label-{{ object.vote.get_score_label }} pull-right">
+                                            {{ object.vote.get_score_display }}
+                                        </div>
+                                    {% endif %}
+                                    <h4 class="list-group-item-heading">
+                                        {{ object|u }}
+                                    </h4>
+
+                                    <p class="list-group-item-text">
+                                        {{ object.summary_html|safe | urlizetrunc:50 | linebreaksbr }}
+                                    </p>
+
                                 </div>
-                            {% endif %}
-                            <h4 class="list-group-item-heading">
-                                {{ object|u }}
-                            </h4>
+                            </div>
+                        </li>
+                    {% endfor %}
 
-                            <p class="list-group-item-text">
-                                {{ object.summary_html|safe | urlizetrunc:50 | linebreaksbr }}
-                            </p>
+                    <li class="list-group-item list-group-item-warning">
+                        <a href="{% url "projects:create" %}">{% trans "Create Project" %}</a>
+                    </li>
 
-                        </div>
-                    </div>
-                </li>
-            {% endfor %}
+                </ul>
+            {% endif %}
 
-            <li class="list-group-item list-group-item-warning">
-                <a href="{% url "projects:create" %}">{% trans "Create Project" %}</a>
-            </li>
-
-        </ul>
-    {% endif %}
+        </div>
+    </div>
 
 {% endblock %}
