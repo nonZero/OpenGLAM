@@ -4,7 +4,7 @@
 {% block content %}
 
     <div class="row">
-        <div class="col-sm-push-2 col-sm-8">
+        <div class="col-s-push-1 col-s-10 col-md-push-2 col-md-8">
             <h1>
                 {% if user.team_member %}
                     <div class="pull-right">
@@ -22,7 +22,7 @@
                 {% for object in published %}
                     <li class="list-group-item{% if object.vote %} list-group-item-warning{% endif %}">
                         <div class="row">
-                            <div class="col-sm-4">
+                            <div class="col-s-4">
                                 <a href="{{ object.get_absolute_url }}">
                                     {% if object.picture %}
                                         <img class="img-responsive"
@@ -33,7 +33,7 @@
                                     {% endif %}
                                 </a>
                             </div>
-                            <div class="col-sm-8">
+                            <div class="col-s-8">
                                 {% if object.bid and object.bid.value %}
                                     <div class="pull-right label label-success">{{ object.bid.value }}
                                         <i class="fa fa-money"></i>
