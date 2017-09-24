@@ -26,6 +26,12 @@ class WebsiteView(TemplateView):
 
 class HomeView(WebsiteView):
     name = 'home'
+    glam = (
+        ('museum', 'Museums'),
+        ('archive', 'Archives'),
+        ('library', 'Libraries'),
+        ('gallery', 'Galleries'),
+    )
 
 
 class ProgramView(WebsiteView):

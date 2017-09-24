@@ -10,9 +10,10 @@ class ProjectForm(forms.ModelForm):
         fields = (
             'title',
             'slug',
-            'link',
-            'summary_markdown',
             'is_published',
+            'summary_markdown',
+            'link',
+            'picture',
         )
 
 

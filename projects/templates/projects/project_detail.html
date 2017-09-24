@@ -50,9 +50,7 @@
                     </div>
                 {% endif %}
             </div>
-        </div>
 
-        <div class="col-sm-4">
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     {% trans "Would you like to work on this project?" %}
@@ -83,6 +81,15 @@
                     {% endif %}
                 </div>
             </div>
+
+        </div>
+
+        <div class="col-sm-4">
+            {% if object.picture %}
+                <div class="thumbnail">
+                    <img src="{{ object.picture.url }}" alt="{{ object }}">
+                </div>
+            {% endif %}
 
             {% if user.team_member %}
                 <div class="panel panel-primary">

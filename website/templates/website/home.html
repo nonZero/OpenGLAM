@@ -6,50 +6,56 @@
         <div id="intro" class="pull-up">
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-7 col-md-6 col-lg-5">
+                    <div class="col-sm-offset-2 col-sm-8">
                         <div class="shady">
 
                             <h1>
-                                תרבות פתוחה OGLAM
+                                תרבות פתוחה
+                                <br/>
+                                Open GLAM Accelerator
+
                             </h1>
 
-                            <h3>
-                                שמונה שבועות של
-                        <span class="things">
-                            <span class="active">
-                                עשיה
-                            </span>
-                            <span>
-                                פיתוח תוכנה
-                            </span>
-                            <span>
-                                יצירה
-                            </span>
-                            <span>
-                                בניה
-                            </span>
-                            <span>
-                                למידה
-                            </span>
-                            <span>
-                                תרומה
-                            </span>
-                            <span>
-                                עבודת צוות
-                            </span>
-                            <span>
-                                יזמות
-                            </span>
-                        </span>
+                            <img class="main-logo"
+                                 src="{% static "img/openglam-logo.png" %}"
+                                 alt="Open GLAM">
 
-                            </h3>
+
+                            {#                            <h3>#}
+                            {#                                שמונה שבועות של#}
+                            {#                        <div class="things">#}
+                            {#                            <div class="active">#}
+                            {#                                עשיה#}
+                            {#                            </div>#}
+                            {#                            <div>#}
+                            {#                                פיתוח תוכנה#}
+                            {#                            </div>#}
+                            {#                            <div>#}
+                            {#                                יצירה#}
+                            {#                            </div>#}
+                            {#                            <div>#}
+                            {#                                בניה#}
+                            {#                            </div>#}
+                            {#                            <div>#}
+                            {#                                למידה#}
+                            {#                            </div>#}
+                            {#                            <div>#}
+                            {#                                תרומה#}
+                            {#                            </div>#}
+                            {#                            <div>#}
+                            {#                                עבודת צוות#}
+                            {#                            </div>#}
+                            {#                            <div>#}
+                            {#                                יזמות#}
+                            {#                            </div>#}
+                            {#                        </div>#}
+                            {##}
+                            {#                            </h3>#}
 
                             <h3>
-                                מחזור שני
+                                חורף 2017
                                 -
-                                חורף 2015
-                                -
-                                ירושלים
+                                תל-אביב
                             </h3>
 
                             <ul class="list-unstyled">
@@ -58,18 +64,52 @@
                                 </li>
                                 <li>
                                     ללמוד לעבוד עם כלי קוד פתוח?
-                                </li>
-                                <li>
                                     לפתח יישומי Web מתקדמים?
                                 </li>
                                 <li>
-                                    רוצה לעבוד וללמוד בצוות לצד מפתחות ומפתחים נוספים?
+                                    רוצה לעבוד וללמוד בצוות לצד מפתחות ומפתחים
+                                    נוספים?
                                 </li>
                                 <li>
                                     <b>זאת ההזדמנות שלך!</b>
                                 </li>
                             </ul>
+                            <div class="row glam">
+                                {% for key, title in view.glam %}
+                                    <div class="col-xs-6 col-sm-3">
 
+                                        <img src="{% static "img/glam/icon-"|add:key|add:".png" %}"
+                                             alt="{{ title }}">
+                                        <div class="caption">{{ title }}</div>
+                                    </div>
+
+                                {% endfor %}
+                            </div>
+                            <p>
+                                Open GLAM Accelerator או בשמו העברי "תרבות
+                                פתוחה",
+                                הוא פרויקט של הסדנא לידע ציבורי, המבוסס על
+                                עקרונות
+                                תנועת <a
+                                    href="https://openglam.org/principles/">Open
+                                GLAM</a> העולמית (GLAM: Galleries,
+                                Libraries, Archives, and Museums), שמטרתה לפתוח
+                                ולהנגיש אוצרות תרבות לציבור.
+                                בתוכנית משתתפים מוסדות תרבות ישראליים מובילים -
+                                הספרייה הלאומית, סינמטק ירושלים, בית התפוצות,
+                                רשות
+                                העתיקות - שברשותם מאגרים של פריטי תרבות, אמנות
+                                ומורשת היסטורית שעברו דיגיטציה ומוכנים לפתיחה
+                                והנגשה לקהל הרחב.
+                            </p>
+                            <p>
+                                במהלך התוכנית, קבוצה של כעשרה
+                                אנשי/נשות תוכנה ומעצבי/ות UX ו-UI יעבדו יחד עם
+                                נציגי מוסדות התרבות. הם יפתחו יחדיו אפליקציות
+                                Web
+                                בקוד פתוח על בסיס המאגרים, כדי לחשוף ולהנגיש
+                                אותם
+                                לציבור.                             </p>
                         </div>
                     </div>
                 </div>
@@ -83,15 +123,20 @@
                 <div class="row">
                     <div class="col-sm-7">
                         <p>
-                            הסדנא לידע ציבורי, בשיתוף עם הספרייה הלאומית, מזמינים אותך לתכנית הכשרה ייחודית לפיתוח תוכנה.<br/>
-                            שמונה שבועות של יצירה מתחילים בסתיו הקרוב. זה הזמן להצטרף, ולהגשים חלום.
+                            הסדנא לידע ציבורי מזמינה אותך לתכנית יצירה והכשרה
+                            ייחודית לפיתוח תוכנה.
+                            <br/>
+                            שלושה חודשים של יצירה מתחילים בקרוב. זה הזמן
+                            להצטרף, ולהגשים חלום.
                         </p>
                     </div>
 
                     <div class="col-sm-5 text-center">
-                        <a href="{% url 'program' %}" class="btn btn-primary"> לפרטים
+                        <a href="{% url 'program' %}" class="btn btn-primary">
+                            לפרטים
                             נוספים &raquo; </a>&nbsp;
-                        <a href="{% url 'sa:dashboard' %}" class="btn btn-primary">
+                        <a href="{% url 'sa:dashboard' %}"
+                           class="btn btn-primary">
                             להרשמה
                             לתכנית &raquo; </a>
                     </div>

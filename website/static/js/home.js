@@ -1,7 +1,7 @@
 "use strict";
 
 $(function () {
-    var things = $('.things span');
+    var things = $('.things div');
 
     function cycle() {
         var i = things.filter('.active').index();

@@ -33,6 +33,7 @@ class Project(models.Model):
     summary_markdown = models.TextField(_('summary (markdown)'))
     summary_html = models.TextField(_('summary (html)'), editable=False)
     link = models.URLField(_('link'), null=True, blank=True)
+    picture = models.ImageField(upload_to='projects/', null=True, blank=True)
 
     objects = ProjectQuerySet.as_manager()
 

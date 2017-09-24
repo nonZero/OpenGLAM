@@ -1,5 +1,5 @@
 {% extends 'users/base.html' %}
-{% load i18n humanize hackita %}
+{% load i18n humanize hackita staticfiles %}
 
 {% block content %}
 
@@ -16,27 +16,44 @@
         {% trans "Projects" %}
     </h1>
 
-    <ul class="list-group">
+    <ul class="list-group project-list">
 
         {% for object in published %}
             <li class="list-group-item{% if object.vote %} list-group-item-warning{% endif %}">
-                {% if object.bid and object.bid.value %}
-                    <div class="pull-right label label-success">{{ object.bid.value }}
-                            <i class="fa fa-money"></i>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <a href="{{ object.get_absolute_url }}">
+                            {% if object.picture %}
+                                <img class="img-responsive"
+                                     src="{{ object.picture.url }}">
+                            {% else %}
+                                <img class="img-responsive"
+                                     src="{% static "img/glam/icon-library.png" %}"/>
+                            {% endif %}
+                        </a>
                     </div>
-                {% endif %}
-                {% if object.vote %}
-                    <div class="label label-{{ object.vote.get_score_label }} pull-right">
-                        {{ object.vote.get_score_display }}
-                    </div>
-                {% endif %}
-                <h4 class="list-group-item-heading">
-                    {{ object|u }}
-                </h4>
+                    <div class="col-sm-9">
+                        {% if object.bid and object.bid.value %}
+                            <div class="pull-right label label-success">{{ object.bid.value }}
+                                <i class="fa fa-money"></i>
+                            </div>
+                        {% endif %}
+                        {% if object.vote %}
 
-                <p class="list-group-item-text">
-                    {{ object.summary_html|safe | urlizetrunc:50 | linebreaksbr }}
-                </p>
+                            <div class="label label-{{ object.vote.get_score_label }} pull-right">
+                                {{ object.vote.get_score_display }}
+                            </div>
+                        {% endif %}
+                        <h4 class="list-group-item-heading">
+                            {{ object|u }}
+                        </h4>
+
+                        <p class="list-group-item-text">
+                            {{ object.summary_html|safe | urlizetrunc:50 | linebreaksbr }}
+                        </p>
+
+                    </div>
+                </div>
             </li>
         {% endfor %}
 
@@ -47,15 +64,41 @@
         <ul class="list-group">
 
             {% for object in object_list.unpublished %}
-                <li class="list-group-item{% if not object.is_published %} list-group-item-danger{% endif %}">
-                    <h4 class="list-group-item-heading">
-                        <a href="{{ object.get_update_url }}">{{ object }}</a>
+                <li class="list-group-item{% if object.vote %} list-group-item-warning{% endif %}">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <a href="{{ object.get_absolute_url }}">
+                                {% if object.picture %}
+                                    <img class="img-responsive"
+                                         src="{{ object.picture.url }}">
+                                {% else %}
+                                    <img class="img-responsive"
+                                         src="{% static "img/glam/icon-library.png" %}"/>
+                                {% endif %}
+                            </a>
+                        </div>
+                        <div class="col-sm-9">
+                            {% if object.bid and object.bid.value %}
+                                <div class="pull-right label label-success">{{ object.bid.value }}
+                                    <i class="fa fa-money"></i>
+                                </div>
+                            {% endif %}
+                            {% if object.vote %}
 
-                    </h4>
+                                <div class="label label-{{ object.vote.get_score_label }} pull-right">
+                                    {{ object.vote.get_score_display }}
+                                </div>
+                            {% endif %}
+                            <h4 class="list-group-item-heading">
+                                {{ object|u }}
+                            </h4>
 
-                    <p class="list-group-item-text">
-                        {{ object.summary | urlizetrunc:50 | linebreaksbr }}
-                    </p>
+                            <p class="list-group-item-text">
+                                {{ object.summary_html|safe | urlizetrunc:50 | linebreaksbr }}
+                            </p>
+
+                        </div>
+                    </div>
                 </li>
             {% endfor %}
 
