@@ -52,7 +52,7 @@ h2 {
 
 #intro {
     padding: 30px 0 0;
-    background: url('../img/home-bg.jpg') no-repeat center center;
+    background: url('../img/home-bg.jpg?x=1') no-repeat center center;
     max-width: 100%;
     min-height: 400px;
     background-size: cover;

@@ -80,7 +80,6 @@ def server_setup():
     print("Do not forget to add a github deploy key!")
 
 
-
 @task
 def host_type():
     run('uname -s')
@@ -301,7 +300,7 @@ def setup_certbot_crontab():
     run('sudo -iu certbot crontab < /tmp/crontab')
 
 
-def _setup_opendkim(host):
+def _setup_opendkim():
     """Setup opendkim and approve host.
     See https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-dkim-with-postfix-on-debian-wheezy
     """
@@ -325,9 +324,14 @@ def _setup_opendkim(host):
     lines = [
         "127.0.0.1",
         "localhost",
-        host,
     ]
     append("/etc/opendkim/TrustedHosts", lines, use_sudo=True)
+
+
+def setup_opendkim_host(host):
+    sudo("mkdir -pv /etc/opendkim/keys")
+
+    append("/etc/opendkim/TrustedHosts", host, use_sudo=True)
 
     s = "mail._domainkey.{0} {0}:mail:/etc/opendkim/keys/{0}/mail.private".format(
         host)
@@ -351,7 +355,12 @@ def _setup_opendkim(host):
 
 @task
 def setup_opendkim():
-    _setup_opendkim(env.vhost)
+    _setup_opendkim()
+    setup_opendkim_host(env.vhost)
+
+@task
+def xxx():
+    setup_opendkim_host('oglam.hasadna.org.il')
 
 
 @task
