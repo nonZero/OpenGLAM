@@ -33,6 +33,8 @@ class HomeView(WebsiteView):
         ('gallery', 'Galleries'),
     )
 
+class TeaserView(HomeView):
+    name = 'teaser'
 
 class ProgramView(WebsiteView):
     name = 'program'

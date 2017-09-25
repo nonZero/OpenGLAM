@@ -32,3 +32,8 @@ urlpatterns = [
 
     url(r'^404/$', lambda r: page_not_found(r, ValueError("Testing 123"))),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+if settings.DEBUG:
+    urlpatterns.append(
+        url(r'^xyzzy/$', views.TeaserView.as_view()),
+    )

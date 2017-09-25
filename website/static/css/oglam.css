@@ -62,6 +62,11 @@ h2 {
     text-align: center;
 }
 
+#intro.teaser {
+    background: black;
+}
+
+
 #intro .shady {
     background: rgba(0, 0, 0, 0.8);
     padding: 10px;
@@ -97,6 +102,9 @@ h2 {
     display: inline-block;
     height: auto;
     padding: 3px 0;
+}
+.teaser .glam img {
+    height: 90px;
 }
 
 .glam .caption {

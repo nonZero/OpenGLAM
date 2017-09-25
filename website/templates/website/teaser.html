@@ -1,0 +1,105 @@
+{% extends 'website/base.html' %}
+{% load static %}
+{% block content_container %}
+
+    <div class="home-top" id="intro-and-teaser">
+        <div id="intro" class="pull-up teaser">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-offset-2 col-sm-8">
+                        <div class="shady">
+
+                            <h1>
+                                תרבות פתוחה
+                                מבית הסדנא לידע ציבורי
+
+                            </h1>
+
+                            <img class="main-logo"
+                                 src="{% static "img/openglam-logo.png" %}"
+                                 alt="Open GLAM">
+
+
+                            <h3>
+                                חורף 2017
+                                -
+                                תל-אביב
+                            </h3>
+
+                            <div class="row glam">
+                                <div class="col-xs-2">&nbsp;</div>
+                                {% for key, title in view.glam %}
+                                    <div class="col-xs-2">
+                                        <img src="{% static "img/glam/icon-"|add:key|add:".png" %}"
+                                             alt="{{ title }}">
+                                        <div class="caption">{{ title }}</div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+
+                            <div class="row glam">
+                                <div class="col-xs-2">&nbsp;</div>
+                                <div class="col-xs-2">
+                                    <a href="https://angular.io/"
+                                       title="AngularJS">
+                                        <img src="{% static "img/icons/angular.png" %}"
+                                             alt="AngularJS"
+                                             class="img-responsive">
+                                    </a>
+                                    <div class="caption">Angular</div>
+                                </div>
+                                <div class="col-xs-2">
+                                    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"
+                                       title="ECMAScript 2015 (Javascript)">
+                                        <img src="{% static "img/icons/es6.png" %}"
+                                             alt="Javascript"
+                                             class="img-responsive">
+                                    </a>
+                                    <div class="caption">JavaScript</div>
+
+                                </div>
+                                <div class="col-xs-2">
+                                    <a href="https://www.djangoproject.com/"
+                                       title="Django">
+                                        <img src="{% static "img/icons/django.png" %}"
+                                             alt="Django"
+                                             class="img-responsive">
+                                    </a>
+                                    <div class="caption">Django</div>
+                                </div>
+                                <div class="col-xs-2">
+                                    <a href="http://www.python.org/"
+                                       title="Python">
+                                        <img src="{% static "img/icons/python.png" %}"
+                                             alt="Python"
+                                             class="img-responsive">
+                                    </a>
+                                    <div class="caption">Python</div>
+                                </div>
+                            </div>
+                            <p>&nbsp;</p>
+                            <p>&nbsp;</p>
+                            <p>&nbsp;</p>
+                            <p>&nbsp;</p>
+                            <p>&nbsp;</p>
+                            <p>&nbsp;</p>
+                            <p>&nbsp;</p>
+                            <p>&nbsp;</p>
+                            <p>&nbsp;</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static "js/home.js" %}"></script>
+{% endblock %}
