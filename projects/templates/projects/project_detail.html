@@ -41,14 +41,19 @@
             <div class="panel panel-default">
                 <div class="panel-body">
                     {{ object.summary_html|safe }}
-                </div>
-                {% if object.link %}
-                    <div class="panel-footer">
-                        <a href="{{ object.link }}" target="_blank"><i
-                                class="fa fa-book"></i> {% trans "Full project statement" %}...
+                    {% if object.link %}
+                        <div class="row">
+                            <div class="col-md-6 col-md-push-3">
+                        <a class="btn btn-primary btn-block btn-lg" href="{{ object.link }}"
+                           target="_blank"><b><i
+                                class="fa fa-book"></i> {% trans "Full project statement" %}
+                            &raquo;</b>
                         </a>
-                    </div>
-                {% endif %}
+
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
             </div>
 
             <div class="panel panel-primary">
@@ -91,7 +96,7 @@
                 </div>
             {% endif %}
 
-            {% if user.team_member %}
+            {% if user.is_authenticated and user.team_member %}
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         {% trans "Votes" %}
