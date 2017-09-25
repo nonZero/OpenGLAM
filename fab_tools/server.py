@@ -272,12 +272,12 @@ def backup_cert():
 
 @task
 def get_cert():
-    # sudo("service nginx stop")
-    # with cd("/home/certbot/"):
-    #     sudo("certbot certonly -c certbot.ini --standalone")
+    sudo("service nginx stop")
+    with cd("/home/certbot/"):
+        sudo("certbot certonly -c certbot.ini --standalone")
     sudo('chown -vR {} {}'.format("certbot", "/home/certbot/"))
-    sudo("service nginx reload")
-    # sudo("service nginx start")
+    # sudo("service nginx reload")
+    sudo("service nginx start")
 
 
 @task
@@ -357,10 +357,6 @@ def setup_opendkim_host(host):
 def setup_opendkim():
     _setup_opendkim()
     setup_opendkim_host(env.vhost)
-
-@task
-def xxx():
-    setup_opendkim_host('oglam.hasadna.org.il')
 
 
 @task
