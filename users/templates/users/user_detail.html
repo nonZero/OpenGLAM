@@ -1,5 +1,5 @@
 {% extends 'users/base.html' %}
-{% load i18n humanize hackita staticfiles %}
+{% load i18n humanize hackita staticfiles bootstrap3 %}
 
 {% block page_title %}
     {{ object }}
@@ -96,7 +96,7 @@
                     <div class="list-group-item-body">
                         <form method="post" id="noteform">
                             {% csrf_token %}
-                            {{ note_form }}
+                            {% bootstrap_form note_form %}
                             <button class="btn btn-primary"
                                     disabled="1">{% trans "Add" %}</button>
                             <div class="save">
