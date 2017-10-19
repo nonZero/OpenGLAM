@@ -29,7 +29,7 @@ INSTALLED_APPS = (
     'website',
     'projects',
     'q13es',
-    'student_applications',
+    'student_applications.apps.StudentApplicationsConfig',
     'surveys',
     'events',
 )
@@ -68,7 +68,6 @@ TIME_ZONE = 'Asia/Jerusalem'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
-
 
 # Users
 AUTH_USER_MODEL = 'users.User'
@@ -213,5 +212,5 @@ BOOTSTRAP3 = {
 }
 
 import utils.mail
-utils.mail.fix_django_mail_encoding()
 
+utils.mail.fix_django_mail_encoding()

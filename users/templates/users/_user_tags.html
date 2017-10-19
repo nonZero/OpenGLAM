@@ -1,14 +1,14 @@
 {% load i18n %}
 
 {% for ut in u.tags.all %}
+    <span class="label label-default utag" data-tag="{{ ut.tag.id }}">
+        <i class="fa fa-tag"></i>
+        {{ ut.tag }}
+    </span>
     &nbsp;
-    <span class="label label-default">
-                <i class="fa fa-tag"></i>
-                {{ ut.tag }}
-            </span>
 {% endfor %}
+
 {% if edit %}
-    &nbsp;
     <a class="btn btn-default btn-xs"
        href="{% url "users:tags" u.id %}" title="{% trans "Edit Tags" %}">
         <i class="fa fa-tags"></i>

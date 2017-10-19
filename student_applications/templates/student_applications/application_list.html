@@ -19,17 +19,27 @@
             </li>
 
         {% endfor %}
-
     </ul>
 
-    <ul class="list-group">
+    <div class="panel panel-info">
+        <div class="panel-body bg-info">
+            {% trans "Showing" %}
+            <span class="visible-apps">?</span>
+            {% trans "of" %}
+            <span class="total-apps">?</span>
+        </div>
+    </div>
+
+
+    <ul class="list-group apps">
         {% for app in object_list %}
             {% with app.user as u %}
 
-                <li class="list-group-item">
+                <li class="list-group-item app">
 
                     <input type="checkbox" name="users"
-                           value="{{ app.user.id }}" checked="1" data-email="{{ app.user.email }}">
+                           value="{{ app.user.id }}" checked="1"
+                           data-email="{{ app.user.email }}">
                     {{ forloop.counter }}.
 
                     {{ app.user|u }}
@@ -38,11 +48,9 @@
 
                     {% app_status app %}
 
-                    &nbsp;
-
-                        <span title="{{ app.last_form_filled }}">
-                            {{ app.last_form_filled|naturaltime }}
-                        </span>
+                    <span title="{{ app.last_form_filled }}">
+                        {{ app.last_form_filled|naturaltime }}
+                    </span>
 
                     {% user_tags app.user %}
 
@@ -50,4 +58,8 @@
             {% endwith %}
         {% endfor %}
     </ul>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static "js/filter_utils.js" %}"></script>
 {% endblock %}

@@ -148,7 +148,7 @@ def generate_code(length=32):
     return ''.join(
         [random.choice(
             'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_')
-         for i in range(length)])
+            for i in range(length)])
 
 
 class CodeManager(models.Manager):
@@ -283,6 +283,7 @@ class TagGroup(object):
 
 class Tag(models.Model):
     name = models.CharField(_("name"), max_length=100)
+    slug = models.CharField(_('slug'), max_length=100, null=True, unique=True)
     group = models.IntegerField(_("group"), choices=TagGroup.choices,
                                 default=TagGroup.NEUTRAL)
 
@@ -324,7 +325,8 @@ class UserTag(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="tags")
     tag = models.ForeignKey(Tag, related_name='users')
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL,
-                                   related_name="tags_created")
+                                   related_name="tags_created",
+                                   null=True)
 
     objects = UserTagManager()
 
