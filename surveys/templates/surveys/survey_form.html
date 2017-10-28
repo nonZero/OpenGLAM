@@ -1,0 +1,37 @@
+{% extends 'users/base.html' %}
+{% load i18n bootstrap3 %}
+
+{% block content %}
+
+    <div class="register">
+
+        <div class="panel panel-default">
+
+            <div class="panel-heading">
+                <h1>
+                    {% if object.id %}
+                        {% trans "Edit survey" %}
+                    {%  else %}
+                        {% trans "Create new survey" %}
+                    {% endif %}
+                </h1>
+            </div>
+
+            <div class="panel-body">
+
+                {% if form.form_description %}
+                    {{ form.form_description|linebreaks }}
+                {% endif %}
+
+                <form method="post" novalidate>
+                    {% csrf_token %}
+                    {% bootstrap_form form %}
+                    <div class="form-actions">
+                        <input class="btn btn-primary btn-lg" type="submit"
+                               value="{% trans "Save" %}"/>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -87,7 +87,7 @@
         </div>
         <div class="col-lg-8">
             <div class="panel">
-                {{ object.event.description|urlize|linebreaksbr }}
+                {{ object.event.description_html|safe }}
             </div>
         </div>
     </div>

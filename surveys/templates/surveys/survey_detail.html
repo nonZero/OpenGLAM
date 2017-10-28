@@ -3,13 +3,19 @@
 
 {% block main_content %}
 
+
+    <div class="pull-right">
+        <a href="{% url "surveys:edit" object.id %}" class="btn btn-primary"><i
+                class="glyphicon glyphicon-pencil"></i></a>
+    </div>
+
     <h1>
         {{ object }}
     </h1>
 
-    {% if object.email_content %}
+    {% if object.email_content_html %}
         <div class="panel htmlcontent">
-            {{ object.email_content|safe }}
+            {{ object.email_content_html|safe }}
         </div>
     {% endif %}
 
@@ -48,7 +54,7 @@
                                         {% if not a.answered_at %}
                                        checked="1"
                                         {% endif %}
-                                        />
+                                />
 
                                 {{ a.user|u }}
 
@@ -60,7 +66,7 @@
                                                       title="{{ field.label }}"
                                                       data-key="{{ field.key }}"
                                                       data-value="{{ field.html }}"
-                                                        >{{ field.html|truncatechars:20 }}</span>
+                                                >{{ field.html|truncatechars:20 }}</span>
                                             {% endif %}
                                         {% endfor %}
                                     {% endwith %}

@@ -1,0 +1,70 @@
+{% extends 'users/base.html' %}
+{% load i18n bootstrap3 staticfiles %}
+
+{% block extra_css %}
+    <link rel="stylesheet"
+          href="{% static "vendor/bootstrap-datetimepicker.css" %}"/>
+{% endblock %}
+
+{% block content %}
+
+    <div class="register">
+
+        <div class="panel panel-default">
+
+            <div class="panel-heading">
+                <h1>
+                    {% if object.id %}
+                        {% trans "Edit event" %}
+                    {% else %}
+                        {% trans "Create new event" %}
+                    {% endif %}
+                </h1>
+            </div>
+
+            <div class="panel-body">
+
+                {% if form.form_description %}
+                    {{ form.form_description|linebreaks }}
+                {% endif %}
+
+                <form method="post" novalidate>
+                    {% csrf_token %}
+                    {% bootstrap_form form %}
+                    <div class="form-actions">
+                        <input class="btn btn-primary btn-lg" type="submit"
+                               value="{% trans "Save" %}"/>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block scripts %}
+    <script src="{% static "vendor/moment.js" %}"></script>
+    <script src="{% static "vendor/bootstrap-datetimepicker.js" %}"></script>
+    <script src="{% static "vendor/bootstrap-datetimepicker.he.js" %}"></script>
+    <script src="{% static "vendor/showdown.js" %}"></script>
+    <script>
+        $(function () {
+
+            $("#id_starts_at,#id_ends_at,#id_registration_ends_at").datetimepicker({
+                language: 'he',
+                autoclose: true
+            });
+            var converter = new showdown.Converter();
+            $('textarea').each(function () {
+                var el = $(this);
+                var preview = $('<div/>');
+                el.after(preview);
+                var refresh_preview = function () {
+                    preview.html(converter.makeHtml(el.val()));
+                };
+                el.on('input', refresh_preview);
+                refresh_preview();
+            });
+        });
+    </script>
+{% endblock %}

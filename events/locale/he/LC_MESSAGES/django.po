@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-13 14:48+0300\n"
-"PO-Revision-Date: 2015-09-13 14:48+0300\n"
+"POT-Creation-Date: 2017-10-29 00:08+0300\n"
+"PO-Revision-Date: 2017-10-29 00:08+0300\n"
 "Last-Translator: Udi Oron <udioron@gmail.com>\n"
 "Language-Team: \n"
 "Language: he\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.8.4\n"
+"X-Generator: Poedit 2.0.4\n"
 
 msgid "title"
 msgstr "כותרת"
@@ -39,6 +39,9 @@ msgstr "ההרשמה נסגרת ב"
 msgid "location"
 msgstr "מיקום"
 
+msgid "description"
+msgstr "תיאור"
+
 msgid "New invitation"
 msgstr "הזמנה חדשה"
 
@@ -49,7 +52,7 @@ msgid "Invitation approved"
 msgstr "ההזמנה אושרה"
 
 msgid "Invitation maybe"
-msgstr "ההזמנה סומנה כ\"אולי\""
+msgstr "ההזמנה סומנה כ\"אולי\"."
 
 msgid "Invitation declined"
 msgstr "ההזמנה נדחתה"
@@ -99,6 +102,15 @@ msgstr "עריכה"
 msgid "Invitation Status"
 msgstr "סטטוס הזמנה"
 
+msgid "Edit event"
+msgstr "עריכת אירוע"
+
+msgid "Create new event"
+msgstr "יצירת אירוע חדש"
+
+msgid "Save"
+msgstr "שמירה"
+
 msgctxt "invitation"
 msgid "to"
 msgstr "עבור"
@@ -119,16 +131,19 @@ msgid "No"
 msgstr "לא"
 
 msgid "Registration already closed."
-msgstr "ההרשמה נסגרה"
-
-msgid "Save"
-msgstr "שמירה"
+msgstr "ההרשמה נסגרה."
 
 msgid "Events"
 msgstr "אירועים"
 
+msgid "Create event"
+msgstr "יצירת אירוע"
+
+msgid "Update event"
+msgstr "עדכון  אירוע"
+
 msgid "Event already finished."
-msgstr "האירוע הסתיים"
+msgstr "האירוע הסתיים."
 
 msgid "Thank you!"
 msgstr "תודה רבה!"

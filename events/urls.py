@@ -4,8 +4,15 @@ from . import views
 
 urlpatterns = (
     url(r'^$', views.EventListView.as_view(), name='list'),
+
+    url(r'^create/$', views.EventCreateView.as_view(),
+        name='create'),
+
     url(r'^(?P<slug>[-\w]+)/$', views.EventDetailView.as_view(),
         name='detail'),
+
+    url(r'^(?P<slug>[-\w]+)/edit/$', views.EventUpdateView.as_view(),
+        name='edit'),
 
     url(r'^(?P<slug>[-\w]+)/contacts/$', views.EventContactsView.as_view(),
         name='contacts'),

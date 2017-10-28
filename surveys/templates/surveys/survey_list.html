@@ -5,6 +5,11 @@
 
 {% block content %}
 
+    <div class="pull-right">
+        <a href="{% url "surveys:create" %}" class="btn btn-primary"><i
+                class="glyphicon glyphicon-plus"></i></a>
+    </div>
+
     <h1>
         {% trans "Surveys" %}
     </h1>

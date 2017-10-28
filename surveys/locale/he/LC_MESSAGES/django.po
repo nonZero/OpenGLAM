@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-07 09:31+0300\n"
-"PO-Revision-Date: 2015-09-07 09:31+0300\n"
+"POT-Creation-Date: 2017-10-29 00:45+0300\n"
+"PO-Revision-Date: 2017-10-29 00:46+0300\n"
 "Last-Translator: Udi Oron <udioron@gmail.com>\n"
 "Language-Team: \n"
 "Language: he\n"
@@ -16,13 +16,13 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.8.4\n"
+"X-Generator: Poedit 2.0.4\n"
 
 msgid "email subject"
 msgstr "כותרת הדואל"
 
-msgid "email content"
-msgstr "תוכן הדואל"
+msgid "email content (markdown)"
+msgstr "תוכן הדואל (markdown)"
 
 msgid "survey"
 msgstr "סקר"
@@ -45,6 +45,15 @@ msgstr "שלח סקר שוב פעם"
 msgid "close marked invites"
 msgstr "סגור פריטים שסומנו"
 
+msgid "Edit survey"
+msgstr "עריכת סקר"
+
+msgid "Create new survey"
+msgstr "יצירת סקר חדש"
+
+msgid "Save"
+msgstr "שמירה"
+
 msgid "Surveys"
 msgstr "סקרים"
 
@@ -54,20 +63,20 @@ msgstr "מילוי הטופס עבור"
 msgid "Send"
 msgstr "שליחה"
 
+msgid "Edit"
+msgstr "עריכה"
+
 msgid "Resent survey to"
 msgstr "הסקר נשלח אל"
 
 msgid "Wrong user! Please login with the correct user to continue"
-msgstr "דף זה מיועד למשתמש אחר. אנא התחבר מחדש למערכת עם המשתמש המתאים."
+msgstr "דף זה מיועד למשתמש אחר. אנא התחבר מחדש למערכת עם המשתמש המתאים"
 
 msgid "Thank you!"
 msgstr "תודה רבה!"
 
 msgid "Problems detected in form. Please fix your errors and try again."
-msgstr ""
-
-#~ msgid "Edit"
-#~ msgstr "עריכה"
+msgstr "נמצאו בעיות בטופס. אנא תקנ/י את הבעיות, ונסה/י שנית."
 
 #~ msgid "'%s' was saved."
 #~ msgstr "'%s' נשמר בהצלחה."

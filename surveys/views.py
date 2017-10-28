@@ -7,22 +7,36 @@ from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 from django.views.generic.detail import SingleObjectMixin, DetailView, \
     SingleObjectTemplateResponseMixin
-from django.views.generic.edit import FormView
+from django.views.generic.edit import FormView, CreateView, UpdateView
 from django.views.generic.list import ListView
 
 from q13es.forms import get_pretty_answer
 from student_applications.views import ApplicationBulkOpsMixin
+from . import forms
 from surveys.models import SurveyAnswer, Survey
 from utils.base_views import TeamOnlyMixin
 
 
-class SurveyListView(TeamOnlyMixin, ListView):
+class SurveyMixin(TeamOnlyMixin):
     model = Survey
+    form_class = forms.SurveyForm
 
 
-class SurveyDetailView(TeamOnlyMixin, ApplicationBulkOpsMixin, DetailView):
-    model = Survey
+class SurveyListView(SurveyMixin, ListView):
+    page_title = _("Surveys")
 
+
+class SurveyCreateView(SurveyMixin, CreateView):
+    page_title = _("Create new survey")
+
+
+class SurveyUpdateView(SurveyMixin, UpdateView):
+    def page_title(self):
+        return "{}: {} | {}".format(_("Edit"), self.object.email_subject,
+                                    _("Surveys"))
+
+
+class SurveyDetailView(SurveyMixin, ApplicationBulkOpsMixin, DetailView):
     def post(self, request, *args, **kwargs):
 
         if not request.user.has_perms("student_applications.bulk_application"):

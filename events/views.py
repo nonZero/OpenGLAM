@@ -2,14 +2,14 @@ from django.contrib import messages
 from django.core.exceptions import PermissionDenied
 from django.core.mail import mail_managers
 from django.db import transaction
+from django.forms import ChoiceField
 from django.http.response import HttpResponseBadRequest
 from django.shortcuts import redirect
 from django.utils import timezone
 from django.utils.translation import ugettext as _
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import UpdateView
+from django.views.generic.edit import UpdateView, CreateView
 from django.views.generic.list import ListView
-from django.forms import ChoiceField
 
 from events import forms
 from events.models import EventInvitation, EventInvitationStatus, Event, \
@@ -19,9 +19,25 @@ from users.models import PersonalInfo
 from utils.base_views import TeamOnlyMixin
 
 
-class EventListView(TeamOnlyMixin, ListView):
-    page_title = _("Events")
+class EventMixin(TeamOnlyMixin):
     model = Event
+    form_class = forms.EventForm
+
+
+class EventListView(EventMixin, ListView):
+    page_title = _("Events")
+
+
+class EventCreateView(EventMixin, CreateView):
+    page_title = _("Create event")
+
+    def form_valid(self, form):
+        form.instance.created_by = self.request.user
+        return super().form_valid(form)
+
+
+class EventUpdateView(EventMixin, UpdateView):
+    page_title = _("Update event")
 
 
 class EventDetailView(TeamOnlyMixin, ApplicationBulkOpsMixin, DetailView):

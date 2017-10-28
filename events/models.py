@@ -1,5 +1,6 @@
 import logging
 
+import markdown
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.core.validators import RegexValidator
@@ -28,10 +29,17 @@ class Event(models.Model):
     registration_ends_at = models.DateTimeField(_("registartion ends at"),
                                                 null=True, blank=True)
     location = models.CharField(_('location'), max_length=400, null=True)
-    description = models.TextField(null=True)
+    description = models.TextField(_('description'), null=True)
+    description_html = models.TextField(null=True)
 
     def __str__(self):
         return self.title
+
+    def save(self, force_insert=False, force_update=False, using=None,
+             update_fields=None):
+        self.description_html = markdown.markdown(
+            self.description) if self.description else None
+        super().save(force_insert, force_update, using, update_fields)
 
     def get_absolute_url(self):
         return reverse("events:detail", args=(self.slug,))
