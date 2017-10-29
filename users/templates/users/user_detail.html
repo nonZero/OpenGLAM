@@ -32,10 +32,10 @@
     {% endwith %}
 
     <div class="row">
-        {% with app=object.application %}
-            {% if app %}
+        <div class="col-md-6">
+            {% with app=object.application %}
+                {% if app %}
 
-                <div class="col-md-6">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <h3 class="panel-title">
@@ -57,7 +57,7 @@
                                     </ul>
                                     {% if review.comments %}
                                         <blockquote>
-                                        {{ review.comments|linebreaksbr }}
+                                            {{ review.comments|linebreaksbr }}
                                         </blockquote>
                                     {% endif %}
                                 </li>
@@ -70,11 +70,10 @@
                             </li>
                         </ul>
                     </div>
-                </div>
-            {% endif %}
-        {% endwith %}
 
-        <div class="col-md-6">
+                {% endif %}
+            {% endwith %}
+
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h3 class="panel-title">
@@ -121,11 +120,131 @@
                 </ul>
             </div>
         </div>
-    </div>
-
-    <div class="row">
 
         <div class="col-md-6">
+            {% if object.invitations.count %}
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            {% trans "Events" %}
+                        </h3>
+                    </div>
+
+                    <ul class="list-group">
+                        {% for i in object.invitations.all %}
+                            <li class="list-group-item">
+                                <div class="pull-right">
+                                    <a class="btn btn-default btn-xs"
+                                       href="{% url "events:invitation_edit" i.slug %}?from={{ request.get_full_path }}"><i
+                                            class="fa fa-pencil"
+                                            title="{% trans "Edit" %}"></i></a>
+                                    &nbsp;
+                                </div>
+
+                                {{ i.event|u }}
+                                {{ i.get_status_display }}
+                                {% if i.attendance %}
+                                    ({{ i.get_attendance_display }})
+                                {% endif %}
+
+                                {% if i.note %}
+                                    <br/>
+                                    <br/>
+                                    <div class="panel panel-default">
+                                        <div class="panel-body">
+                                            <p>{{ i.note|linebreaksbr }}</p>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            </li>
+
+                        {% endfor %}
+                    </ul>
+                </div>
+
+
+            {% endif %}
+
+            {% if object.survey_answers.count %}
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            {% trans "Surveys" %}
+                        </h3>
+                    </div>
+
+                    <ul class="list-group">
+                        {% for a in object.survey_answers.all %}
+                            <li class="list-group-item{% if not a.is_open %} list-group-item-warning{% endif %}">
+                                <div class="list-group-item-heading">
+                                    {% if not a.is_open %}
+                                        <div class="pull-right">
+                                            &nbsp;
+                                            <i class="fa fa-check"></i>
+                                        </div>
+                                    {% endif %}
+                                    {% if a.answered_at %}
+                                        <a class="badge pull-right"
+                                           data-toggle="collapse"
+                                           href="#answer-{{ a.id }}"
+                                           title="{{ a.answered_at }}">
+                                            {{ a.answered_at|naturaltime }}
+
+                                            <i class="fa fa-angle-down"></i>
+
+                                        </a>
+                                    {% endif %}
+
+                                    {{ a.survey|u }}
+
+                                    {% if a.answered_at %}
+                                        {% with a.get_pretty as a %}
+                                            {% for field in a.fields %}
+                                                {% if field.html %}
+                                                    <span class="label label-info key-{{ field.key }}"
+                                                          title="{{ field.label }}"
+                                                          data-key="{{ field.key }}"
+                                                          data-value="{{ field.html }}"
+                                                    >{{ field.html|truncatechars:20 }}</span>
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% endwith %}
+
+                                    {% endif %}
+                                </div>
+
+                                {% if a.answered_at %}
+                                    <div class="list-group-item-body">
+
+                                        <div class="collapse"
+                                             id="answer-{{ a.id }}">
+                                            {% with a.get_pretty as a %}
+                                                {% for field in a.fields %}
+                                                    {% if field.html %}
+                                                        <div class="user-answer">
+                                                            <div class="user-answer-title">
+                                                                {{ field.label }}
+                                                            </div>
+                                                            <div class="user-answer-content">
+                                                                {{ field.html|urlize|linebreaksbr }}
+                                                            </div>
+                                                        </div>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endwith %}
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            </li>
+
+                        {% endfor %}
+                    </ul>
+                </div>
+
+
+            {% endif %}
+
+
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h3 class="panel-title">
@@ -139,9 +258,6 @@
                     {% endfor %}
                 </ul>
             </div>
-        </div>
-
-        <div class="col-md-6">
             {% if perms.projects.view_projectvote %}
                 <div class="panel panel-primary">
                     <div class="panel-heading">
