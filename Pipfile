@@ -1,10 +1,11 @@
 [packages]
+
 ipython = "*"
 pytz = "*"
 bleach = "*"
 markdown = "*"
 pillow = "*"
-psycopg2 = "*"
+"psycopg2" = "*"
 django = "*"
 django-authtools = "*"
 django-braces = "*"
@@ -12,11 +13,12 @@ django-extensions = "*"
 social-auth-core = {extras = ["openidconnect"]}
 social-auth-app-django = "*"
 requests-oauthlib = "*"
-django-bootstrap3 = "*"
+"django-bootstrap3" = "*"
 gunicorn = "*"
 setproctitle = "*"
 
-[dev-packages]
-fabric3 = "*"
-coverage = "*"
 
+[dev-packages]
+
+"fabric3" = "*"
+coverage = "*"

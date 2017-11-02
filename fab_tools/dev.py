@@ -22,6 +22,10 @@ def load_db_from_file(filename):
     cmd = '{} {} | python manage.py dbshell'.format(cmd, filename)
     local(cmd)
 
+@task
+def load_latest_db_from_file():
+    load_db_from_file(f"{env.host}/latest.sql.gz")
+
 
 @task
 def create_db_user():

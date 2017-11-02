@@ -1,4 +1,5 @@
 import datetime
+from pathlib import Path
 
 from fabric import operations
 from fabric.api import *
@@ -24,4 +25,12 @@ def remote_backup_db():
 
 @task
 def backup_db():
-    operations.get(make_backup())
+    files = operations.get(make_backup())
+    if len(files) != 1:
+        print("no file downloaded!")
+        return
+
+    latest = "latest.sql.gz"
+    target = Path(files[0])
+    local(f"cd {target.parent} && ln -fs {target} {latest}")
+    print(f"link created to: {target.parent / latest}")
