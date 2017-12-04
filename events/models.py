@@ -87,6 +87,8 @@ class EventInvitationStatus(object):
         (DECLINED, _('Invitation declined')),
     )
 
+    selectable = {APPROVED, DECLINED, MAYBE}
+
 
 class EventInvitationAttendance(object):
     ATTENDED = 1

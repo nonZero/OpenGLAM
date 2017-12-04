@@ -1,5 +1,6 @@
 import datetime
 
+from django.core import mail
 from django.test import TestCase
 from django.utils import timezone
 
@@ -10,10 +11,11 @@ from . import models
 class EventsTests(TestCase):
     def setUp(self):
         self.password = 'secret'
-        self.su = User.objects.create_superuser(email='super@user.com',
-                                                password=self.password,
-                                                team_member=True,
-                                                )
+        self.su = User.objects.create_superuser(
+            email='super@user.com',
+            password=self.password,
+            team_member=True,
+        )
 
         now = timezone.now()
         tmrw = now + datetime.timedelta(1)
@@ -54,8 +56,25 @@ class EventsTests(TestCase):
         self.assertContains(resp, self.e.title)
 
     def test_invitation(self):
-        url = self.i1.get_absolute_url()
+        mail.outbox = []
 
+        url = self.i1.get_absolute_url()
         resp = self.client.get(url)
         self.assertContains(resp, "title")
-        # print(resp.content)
+
+        data = {
+            'status': models.EventInvitationStatus.APPROVED,
+            'note': 'xyzzy!'
+        }
+
+        resp = self.client.post(url, data, follow=True)
+
+        messages = list(resp.context['messages'])
+        self.assertEqual(len(messages), 1)
+        self.assertEqual(messages[0].tags, "success")
+
+        self.i1.refresh_from_db()
+        self.assertEqual(self.i1.status, data['status'])
+
+        self.assertEqual(len(mail.outbox), 1)
+        self.assertIn(self.i1.event.get_absolute_url(), mail.outbox[0].body)
