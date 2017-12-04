@@ -46,7 +46,7 @@ def deploy(restart=True, quick=False):
     with virtualenv(env.code_dir):
         run("git pull", pty=False)
         if not quick:
-            run("pipenv install", pty=False)
+            run("pip install -r requirements.txt", pty=False)
             run("python manage.py migrate --noinput")
             run("python manage.py update_permissions")
         run("python manage.py collectstatic --noinput")

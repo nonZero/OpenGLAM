@@ -22,6 +22,7 @@ def load_db_from_file(filename):
     cmd = '{} {} | python manage.py dbshell'.format(cmd, filename)
     local(cmd)
 
+
 @task
 def load_latest_db_from_file():
     load_db_from_file(f"{env.host}/latest.sql.gz")
@@ -35,3 +36,8 @@ def create_db_user():
 @task
 def create_db():
     local("createdb -O {0} {0}".format(env.db))
+
+
+@task
+def lock_pip():
+    local('pipenv lock -r > requirements.txt')
