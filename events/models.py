@@ -32,6 +32,13 @@ class Event(models.Model):
     description = models.TextField(_('description'), null=True)
     description_html = models.TextField(null=True)
 
+    class Meta:
+        verbose_name = _('event')
+        verbose_name_plural = _('events')
+        ordering = (
+            '-starts_at',
+        )
+
     def __str__(self):
         return self.title
 
